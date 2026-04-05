@@ -1,0 +1,25 @@
+selection_seed,sample_order,sample_index,reference_text,native_sampling_rate,resampled_sampling_rate,duration_seconds,dataset_name,dataset_config,split
+42,0,114,we're having issues with the online banking app I'm not sure what's wrong with but when I try to login it keeps crashing so what I've done is I've deleted it and we installed it but it still does the same thing and it's not working is there any way that you can call me back and assist me thank you,8000,16000,22.272,PolyAI/minds14,en-AU,train
+42,1,25,I need to pay a bill ID like to make payment,8000,16000,6.656,PolyAI/minds14,en-AU,train
+42,2,281,I want to open a joint account,8000,16000,2.218625,PolyAI/minds14,en-AU,train
+42,3,250,I'm going overseas and I need to check my credit card works ok but ok overseas,8000,16000,8.52,PolyAI/minds14,en-AU,train
+42,4,228,I need to change my address,8000,16000,6.687375,PolyAI/minds14,en-AU,train
+42,5,142,I need to get money out tomorrow and I'm just wondering what's the maximum I can withdraw from my account thanks,8000,16000,13.568,PolyAI/minds14,en-AU,train
+42,6,104,the App isn't working,8000,16000,2.645375,PolyAI/minds14,en-AU,train
+42,7,558,hello I'm I'm just calling about setting up a direct debit I'm I'm just hoping that you could help me I have never do this on the app and I just want to talk to someone about it to help you said everything up,8000,16000,14.953625,PolyAI/minds14,en-AU,train
+42,8,89,hey mate I'm on lock my cardos lost my card so I need the freezer to stop all transactions can you please do that for me,8000,16000,13.056,PolyAI/minds14,en-AU,train
+42,9,604,g'day mate I'm making a large purchase online it says ill send me an SMS verification code or something not sure how that works could you explain it thanks,8000,16000,16.981375,PolyAI/minds14,en-AU,train
+42,10,432,hi there I'm calling about a business loan I was wondering if I could get some information from you please,8000,16000,8.448,PolyAI/minds14,en-AU,train
+42,11,32,I need to make a payment an overdue payment,8000,16000,8.12,PolyAI/minds14,en-AU,train
+42,12,30,bill payment,8000,16000,1.9505,PolyAI/minds14,en-AU,train
+42,13,95,oh hi there I've just discovered that my card has gone missing and ID like to freeze my car so that no transaction connect her can you help me help me with that please thanks,8000,16000,14.933375,PolyAI/minds14,en-AU,train
+42,14,223,hi I just said the address of my come please,8000,16000,6.997375,PolyAI/minds14,en-AU,train
+42,15,238,hello I was just wondering if I could please change my address thank you,8000,16000,5.461375,PolyAI/minds14,en-AU,train
+42,16,517,hello I was wondering if you could please show me my latest transaction,8000,16000,4.864,PolyAI/minds14,en-AU,train
+42,17,616,I'm just wondering how I can deposit money into the account,8000,16000,3.901,PolyAI/minds14,en-AU,train
+42,18,27,yes ID like to pay my bill today using a credit card,8000,16000,6.912,PolyAI/minds14,en-AU,train
+42,19,574,hi I'm traffic lights payment prefer lots of money I do not know what to do with my messages and apparently chords,8000,16000,19.370625,PolyAI/minds14,en-AU,train
+42,20,203,my address I want to change my address,8000,16000,7.594625,PolyAI/minds14,en-AU,train
+42,21,429,I'm calling to find out about new business loans,8000,16000,3.584,PolyAI/minds14,en-AU,train
+42,22,225,hey there I'm just calling about my address I've recently moved and I'm just needing to change it hopefully you can just lend me a hand with that one thanks,8000,16000,12.074375,PolyAI/minds14,en-AU,train
+42,23,459,hi there I have a question about the existing loan,8000,16000,4.522625,PolyAI/minds14,en-AU,train

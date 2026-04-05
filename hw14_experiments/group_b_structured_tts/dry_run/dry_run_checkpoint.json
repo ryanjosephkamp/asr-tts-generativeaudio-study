@@ -1,0 +1,161 @@
+{
+  "groups": {
+    "group_a_asr": {
+      "full": {
+        "group_root": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr",
+        "updated_at": "2026-04-04 00:47:50",
+        "completed_blocks": [
+          "exp1_baselines",
+          "exp2_shortform_asr",
+          "exp3_asr_sensitivity_3a",
+          "exp3_asr_sensitivity_3b",
+          "exp4_longform_whisper",
+          "best_asr_evaluator_selected"
+        ],
+        "block_summaries": {
+          "exp1_baselines": {
+            "rows": 5,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/exp1_baselines/exp1_baselines.csv"
+          },
+          "exp2_shortform_asr": {
+            "rows": 96,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/exp2_shortform_asr/exp2_shortform_asr.csv"
+          },
+          "exp3_asr_sensitivity_3a": {
+            "rows": 90,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/exp3_asr_sensitivity/exp3_asr_sensitivity.csv"
+          },
+          "exp3_asr_sensitivity_3b": {
+            "rows": 114,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/exp3_asr_sensitivity/exp3_asr_sensitivity.csv"
+          },
+          "exp4_longform_whisper": {
+            "rows": 6,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/exp4_longform_whisper/exp4_longform_whisper.csv"
+          },
+          "best_asr_evaluator_selected": {
+            "workflow_name": "ga20c_whisper_direct",
+            "path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/full/best_asr_evaluator.json"
+          }
+        }
+      },
+      "dry_run": {
+        "group_root": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/dry_run",
+        "updated_at": "2026-04-04 00:20:30",
+        "completed_blocks": [
+          "exp1_baselines",
+          "exp2_shortform_asr",
+          "exp3_asr_sensitivity_3a",
+          "exp3_asr_sensitivity_3b",
+          "exp4_longform_whisper"
+        ],
+        "block_summaries": {
+          "exp1_baselines": {
+            "rows": 5,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/dry_run/exp1_baselines/exp1_baselines.csv"
+          },
+          "exp2_shortform_asr": {
+            "rows": 4,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/dry_run/exp2_shortform_asr/exp2_shortform_asr.csv"
+          },
+          "exp3_asr_sensitivity_3a": {
+            "rows": 3,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/dry_run/exp3_asr_sensitivity/exp3_asr_sensitivity.csv"
+          },
+          "exp3_asr_sensitivity_3b": {
+            "rows": 4,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/dry_run/exp3_asr_sensitivity/exp3_asr_sensitivity.csv"
+          },
+          "exp4_longform_whisper": {
+            "rows": 1,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/dry_run/exp4_longform_whisper/exp4_longform_whisper.csv"
+          }
+        }
+      }
+    },
+    "group_c_bark_cross": {
+      "dry_run": {
+        "group_root": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/dry_run",
+        "updated_at": "2026-04-04 04:34:03",
+        "completed_blocks": [
+          "exp1_baselines",
+          "exp7_bark",
+          "exp8_cross_tts"
+        ],
+        "block_summaries": {
+          "exp1_baselines": {
+            "rows": 2,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/dry_run/exp1_baselines/exp1_baselines.csv"
+          },
+          "exp7_bark": {
+            "rows": 4,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/dry_run/exp7_bark/exp7_bark.csv"
+          },
+          "exp8_cross_tts": {
+            "rows": 1,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/dry_run/exp8_cross_tts/exp8_cross_tts.csv",
+            "asr_evaluator": "ga20c_whisper_direct"
+          }
+        }
+      },
+      "full": {
+        "group_root": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross",
+        "updated_at": "2026-04-04 05:23:27",
+        "completed_blocks": [
+          "exp1_baselines",
+          "exp7_bark",
+          "exp8_cross_tts"
+        ],
+        "block_summaries": {
+          "exp1_baselines": {
+            "rows": 2,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp1_baselines/exp1_baselines.csv"
+          },
+          "exp7_bark": {
+            "rows": 20,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/exp7_bark.csv"
+          },
+          "exp8_cross_tts": {
+            "rows": 9,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/exp8_cross_tts.csv",
+            "asr_evaluator": "ga20c_whisper_direct"
+          }
+        }
+      }
+    },
+    "group_b_structured_tts": {
+      "dry_run": {
+        "group_root": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/dry_run",
+        "updated_at": "2026-04-04 06:14:23",
+        "completed_blocks": [
+          "exp1_baselines_structured_tts",
+          "exp5_speecht5_tts",
+          "exp6a_mms_seed",
+          "exp6b_mms_speaking_rate"
+        ],
+        "block_summaries": {
+          "exp1_baselines_structured_tts": {
+            "rows": 2,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/dry_run/exp1_baselines/exp1_baselines.csv"
+          },
+          "exp5_speecht5_tts": {
+            "rows": 1,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/dry_run/exp5_speecht5_tts/exp5_speecht5_tts.csv"
+          },
+          "exp6a_mms_seed": {
+            "rows": 1,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/dry_run/exp6_mms_tts/exp6_mms_tts.csv"
+          },
+          "exp6b_mms_speaking_rate": {
+            "rows": 2,
+            "csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/dry_run/exp6_mms_tts/exp6_mms_tts.csv"
+          }
+        }
+      }
+    }
+  },
+  "last_group": "group_b_structured_tts",
+  "last_mode": "dry_run",
+  "last_block": "exp6b_mms_speaking_rate",
+  "saved_at": "2026-04-03 19:42:11"
+}

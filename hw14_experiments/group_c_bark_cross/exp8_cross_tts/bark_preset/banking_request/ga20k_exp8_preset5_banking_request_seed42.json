@@ -1,0 +1,22 @@
+{
+  "label": "ga20k_exp8_preset5_banking_request_seed42",
+  "model_name": "suno/bark-small",
+  "timestamp": "2026-04-04 05:23:25",
+  "input_sampling_rate": 24000,
+  "input_text": "I need to transfer money from savings to checking today.",
+  "voice_preset": "v2/en_speaker_5",
+  "seed": 42,
+  "do_sample": true,
+  "native_sampling_rate": 24000,
+  "saved_sampling_rate": 24000,
+  "save_rate_mode": "native",
+  "inference_time_sec": 35.25001994599984,
+  "output_audio_path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/bark_preset/banking_request/ga20k_exp8_preset5_banking_request_seed42.wav",
+  "sample_rate": 24000,
+  "sample_count": 114240,
+  "duration_seconds": 4.76,
+  "rms": 0.10750225186347961,
+  "max_amplitude": 0.999969482421875,
+  "min_amplitude": -0.999969482421875,
+  "path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/bark_preset/banking_request/ga20k_exp8_preset5_banking_request_seed42.wav"
+}

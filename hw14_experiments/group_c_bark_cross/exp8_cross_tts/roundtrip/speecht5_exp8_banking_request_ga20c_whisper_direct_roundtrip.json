@@ -1,0 +1,18 @@
+{
+  "label": "speecht5_exp8_banking_request_ga20c_whisper_direct_roundtrip",
+  "model_name": "openai/whisper-small",
+  "timestamp": "2026-04-04 05:22:13",
+  "input_sampling_rate": 16000,
+  "workflow_name": "ga20c_whisper_direct",
+  "sample_index": null,
+  "decode_policy": "clean",
+  "predicted_text_raw": " I need to transfer money from savings to checking today.",
+  "predicted_text_normalized": "i need to transfer money from savings to checking today",
+  "reference_text_raw": "I need to transfer money from savings to checking today.",
+  "reference_text_normalized": "i need to transfer money from savings to checking today",
+  "inference_time_sec": 2.2647940580000068,
+  "reference_normalized": "i need to transfer money from savings to checking today",
+  "hypothesis_normalized": "i need to transfer money from savings to checking today",
+  "wer": 0.0,
+  "cer": 0.0
+}

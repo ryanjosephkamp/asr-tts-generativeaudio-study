@@ -1,0 +1,18 @@
+{
+  "label": "ga20a_baseline",
+  "model_name": "openai/whisper-small",
+  "timestamp": "2026-04-04 00:41:16",
+  "input_sampling_rate": 16000,
+  "workflow_name": "ga20a_whisper_pipeline",
+  "sample_index": 640,
+  "decode_policy": "clean",
+  "predicted_text_raw": " I want to put some money into my account and I'm not sure how to go about doing that.",
+  "predicted_text_normalized": "i want to put some money into my account and i m not sure how to go about doing that",
+  "reference_text_raw": "I want to put some money into my account and I'm not sure how to go about doing that",
+  "reference_text_normalized": "i want to put some money into my account and i m not sure how to go about doing that",
+  "inference_time_sec": 0.49515713100026915,
+  "reference_normalized": "i want to put some money into my account and i m not sure how to go about doing that",
+  "hypothesis_normalized": "i want to put some money into my account and i m not sure how to go about doing that",
+  "wer": 0.0,
+  "cer": 0.0
+}

@@ -1,0 +1,22 @@
+{
+  "label": "ga20f_exp5_hello_dog_helper_embedding",
+  "model_name": "microsoft/speecht5_tts",
+  "timestamp": "2026-04-04 06:55:48",
+  "input_sampling_rate": 16000,
+  "input_text": "Hello, my dog is cute.",
+  "speaker_condition": "helper_embedding",
+  "seed": 42,
+  "inference_time_sec": 0.6277422780000279,
+  "saved_sampling_rate": 16000,
+  "output_figure_path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp5_speecht5_tts/ga20f_exp5_hello_dog_helper_embedding_spectrogram.png",
+  "output_audio_path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp5_speecht5_tts/ga20f_exp5_hello_dog_helper_embedding.wav",
+  "spectrogram_frames": 80,
+  "spectrogram_bins": 78,
+  "sample_rate": 16000,
+  "sample_count": 19968,
+  "duration_seconds": 1.248,
+  "rms": 0.07733965665102005,
+  "max_amplitude": 0.3209228515625,
+  "min_amplitude": -0.462646484375,
+  "path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp5_speecht5_tts/ga20f_exp5_hello_dog_helper_embedding.wav"
+}

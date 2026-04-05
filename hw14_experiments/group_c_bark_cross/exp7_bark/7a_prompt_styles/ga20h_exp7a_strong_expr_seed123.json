@@ -1,0 +1,21 @@
+{
+  "label": "ga20h_exp7a_strong_expr_seed123",
+  "model_name": "suno/bark-small",
+  "timestamp": "2026-04-04 05:18:30",
+  "input_sampling_rate": 24000,
+  "input_text": "Hello, my name is Suno! [laughs] I absolutely love pizza. [gasps] But I also have other interests, such as playing tic tac toe!",
+  "seed": 123,
+  "do_sample": true,
+  "native_sampling_rate": 24000,
+  "saved_sampling_rate": 24000,
+  "save_rate_mode": "native",
+  "inference_time_sec": 69.39808062799989,
+  "output_audio_path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7a_prompt_styles/ga20h_exp7a_strong_expr_seed123.wav",
+  "sample_rate": 24000,
+  "sample_count": 283520,
+  "duration_seconds": 11.813333333333333,
+  "rms": 0.06839120388031006,
+  "max_amplitude": 0.81964111328125,
+  "min_amplitude": -0.8768310546875,
+  "path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7a_prompt_styles/ga20h_exp7a_strong_expr_seed123.wav"
+}

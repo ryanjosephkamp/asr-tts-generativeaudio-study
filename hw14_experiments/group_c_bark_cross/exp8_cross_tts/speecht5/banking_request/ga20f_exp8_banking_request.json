@@ -1,0 +1,19 @@
+{
+  "label": "ga20f_exp8_banking_request",
+  "model_name": "microsoft/speecht5_tts",
+  "timestamp": "2026-04-04 05:22:10",
+  "input_sampling_rate": 16000,
+  "input_text": "I need to transfer money from savings to checking today.",
+  "speaker_condition": "helper_embedding",
+  "inference_time_sec": 1.468268203999969,
+  "saved_sampling_rate": 16000,
+  "output_figure_path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/speecht5/banking_request/ga20f_exp8_banking_request_spectrogram.png",
+  "output_audio_path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/speecht5/banking_request/ga20f_exp8_banking_request.wav",
+  "sample_rate": 16000,
+  "sample_count": 50176,
+  "duration_seconds": 3.136,
+  "rms": 0.0699913501739502,
+  "max_amplitude": 0.2940673828125,
+  "min_amplitude": -0.3759765625,
+  "path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/speecht5/banking_request/ga20f_exp8_banking_request.wav"
+}

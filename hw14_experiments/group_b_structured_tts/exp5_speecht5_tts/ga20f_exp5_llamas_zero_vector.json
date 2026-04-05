@@ -1,0 +1,22 @@
+{
+  "label": "ga20f_exp5_llamas_zero_vector",
+  "model_name": "microsoft/speecht5_tts",
+  "timestamp": "2026-04-04 06:55:46",
+  "input_sampling_rate": 16000,
+  "input_text": "There are llamas all around.",
+  "speaker_condition": "zero_vector",
+  "seed": 42,
+  "inference_time_sec": 0.6436801759999753,
+  "saved_sampling_rate": 16000,
+  "output_figure_path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp5_speecht5_tts/ga20f_exp5_llamas_zero_vector_spectrogram.png",
+  "output_audio_path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp5_speecht5_tts/ga20f_exp5_llamas_zero_vector.wav",
+  "spectrogram_frames": 80,
+  "spectrogram_bins": 68,
+  "sample_rate": 16000,
+  "sample_count": 17408,
+  "duration_seconds": 1.088,
+  "rms": 0.024454405531287193,
+  "max_amplitude": 0.20172119140625,
+  "min_amplitude": -0.16400146484375,
+  "path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp5_speecht5_tts/ga20f_exp5_llamas_zero_vector.wav"
+}

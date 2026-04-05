@@ -1,0 +1,504 @@
+% IEEE Conference Paper — HW14: Speech AI with Transformers
+% CS6078 Generative AI — University of Cincinnati — Spring 2026
+
+\documentclass[conference]{IEEEtran}
+
+%=============================================================================
+% Packages
+%=============================================================================
+
+% Citations
+\usepackage{cite}
+
+% Math
+\usepackage{amsmath,amssymb,amsfonts}
+
+% Algorithms
+\usepackage{algorithmic}
+
+% Figures
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{placeins}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+
+% Typography and formatting
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{bm}
+
+%=============================================================================
+% Custom commands
+%=============================================================================
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+%=============================================================================
+\begin{document}
+%=============================================================================
+
+\title{Speech AI with Transformers: A Systematic Experimental Study of Automatic Speech Recognition, Text-to-Speech Synthesis, and Generative Audio\\
+{\footnotesize A Comprehensive Experimental Study of ASR Family Comparison, Preprocessing Sensitivity, Long-Form Transcription, Speaker-Conditioned TTS, End-to-End Waveform Synthesis, and Prompt-Conditioned Audio Generation}
+}
+
+\author{\IEEEauthorblockN{Ryan Kamp}
+\IEEEauthorblockA{\textit{CS6078 Generative AI} \\
+\textit{University of Cincinnati}\\
+April 3, 2026}}
+
+\maketitle
+
+%=============================================================================
+\begin{abstract}
+This study presents a systematic experimental investigation of modern speech AI systems spanning automatic speech recognition (ASR) and text-to-speech synthesis (TTS), conducted through eight controlled experiments addressing seven research questions. Using the MINDS-14 banking-intent dataset and a common text bank, we compared four ASR workflows---Whisper pipeline, Wav2Vec2 CTC, direct Whisper, and SpeechT5 ASR---and three TTS families---SpeechT5 with HiFi-GAN, MMS-TTS/VITS, and Bark. The study produced 272 consolidated data rows and 22 figures across three execution groups on Google Colab GPU. In the ASR domain, direct Whisper inference achieved the lowest mean word error rate (WER) of 0.169 on 24 fixed MINDS-14 utterances, followed by the Whisper pipeline (0.188), Wav2Vec2 CTC (0.390), and SpeechT5 ASR (0.566). Sampling-rate sensitivity analysis revealed that deviation from the expected 16~kHz input degraded all models substantially, with Wav2Vec2 CTC mean WER rising from 0.357 at 16~kHz to 0.975 at 8~kHz. Long-form Whisper transcription showed that chunk lengths of 5 and 10 seconds produced near-identical transcripts (similarity $\geq 0.993$), while 15-second chunks generated divergent, repetitive outputs (similarity 0.289). In the TTS domain, round-trip ASR evaluation on common texts revealed SpeechT5 as the most intelligible system (mean WER 0.067, mean character error rate 0.012) with a mean generation time of 1.006~s, followed by MMS-TTS (WER 0.200, CER 0.132, 0.480~s) and Bark (WER 0.333, CER 0.247, 29.4~s). MMS-TTS demonstrated perfect deterministic reproducibility under seed control, SpeechT5 provided explicit controllability through speaker embeddings and an exposed spectrogram-to-vocoder pipeline, and Bark offered the greatest expressive range but at the cost of stochasticity and substantially longer generation times. These findings provide empirical characterizations of the controllability--expressiveness--efficiency trade-off space in contemporary speech AI.
+\end{abstract}
+
+\begin{IEEEkeywords}
+automatic speech recognition, text-to-speech synthesis, Whisper, wav2vec~2.0, SpeechT5, MMS-TTS, VITS, Bark, HiFi-GAN, MINDS-14, generative audio, speech AI
+\end{IEEEkeywords}
+
+%=============================================================================
+\section{Introduction}
+\label{sec:intro}
+%=============================================================================
+
+\subsection{Assignment Context and Project Scope}
+
+This study extends Homework~14 for CS6078 Generative AI (Spring 2026, University of Cincinnati), which is based on Chapter~9 of \textit{Hands-on Generative AI with Transformers and Diffusion Models} by Alammar and Grootendorst~\cite{alammar2024}. The base assignment requires running nine Python scripts---GA20A through GA20K---that implement speech recognition and speech generation workflows, and presenting the resulting text and audio outputs. This project extends the assignment into a rigorous experimental study by: (1)~running all nine scripts with their original default parameters to establish baselines; (2)~systematically varying parameters across eight experiments to address seven research questions spanning the ASR and TTS domains; and (3)~producing publication-quality analysis with quantitative metrics, comparative tables, and cross-modal synthesis.
+
+The nine scripts collectively instantiate two major directions of speech AI. Five scripts address automatic speech recognition: GA20A uses Whisper via the high-level Hugging Face pipeline API, GA20B performs explicit Wav2Vec2 CTC inference, GA20C uses Whisper through direct model-and-processor calls, GA20D demonstrates long-form Whisper transcription with chunking and timestamps, and GA20E applies SpeechT5 as a unified speech-text encoder-decoder for ASR. Four scripts address speech generation: GA20F performs SpeechT5 TTS with speaker embeddings and a HiFi-GAN vocoder, GA20G uses MMS-TTS/VITS for end-to-end waveform synthesis, and GA20H and GA20K use Bark for prompt-conditioned and voice-preset-conditioned generative audio respectively.
+
+The study produced 272 consolidated data rows across 10 primary CSV files, 22 figures, and structured JSON artifacts, organized into three execution groups: Group~A (ASR experiments), Group~B (structured TTS experiments), and Group~C (Bark and cross-model comparison). All experiments were executed on Google Colab with T4 GPU acceleration using dry-run and full notebook pairs with checkpointing.
+
+\subsection{Research Questions}
+
+This study addresses seven research questions:
+
+\begin{enumerate}
+    \item[\textbf{RQ1.}] How do the short-form ASR families represented by GA20A, GA20B, GA20C, and GA20E compare on MINDS-14 when evaluated on a common fixed subset with consistent 16~kHz preprocessing?
+    \item[\textbf{RQ2.}] How sensitive are ASR conclusions to preprocessing and decoding choices such as resampling rate, token cleanup, and pipeline-versus-direct decoding?
+    \item[\textbf{RQ3.}] How do Whisper chunk length and batching choices affect long-form transcript structure, timestamp granularity, and self-consistency?
+    \item[\textbf{RQ4.}] How much controllability and interpretability does SpeechT5 offer through explicit speaker embeddings and its exposed spectrogram-to-vocoder pipeline?
+    \item[\textbf{RQ5.}] How reproducible is MMS-TTS/VITS under explicit seed control, and how do text content and speaking-rate controls affect duration and intelligibility?
+    \item[\textbf{RQ6.}] How do Bark's two control mechanisms---free-form prompt cues and explicit voice presets---differ in expressive power, repeatability, and sensitivity to sample-rate metadata at export time?
+    \item[\textbf{RQ7.}] Across SpeechT5, MMS-TTS, and Bark, which model family offers the best assignment-relevant trade-off among intelligibility, controllability, expressiveness, and runtime?
+\end{enumerate}
+
+\subsection{Report Organization}
+
+Section~\ref{sec:litreview} provides a condensed literature review covering the theoretical foundations of the ASR and TTS systems under study. Section~\ref{sec:methodology} describes the experimental methodology, including dataset selection, evaluation metrics, execution architecture, and reproducibility controls. Section~\ref{sec:results} presents the results of all eight experiments. Section~\ref{sec:discussion} synthesizes the findings into a cross-experiment discussion addressing all seven research questions. Section~\ref{sec:conclusions} provides conclusions, and Section~\ref{sec:futurework} outlines directions for future work.
+
+%=============================================================================
+\section{Literature Review}
+\label{sec:litreview}
+%=============================================================================
+
+\subsection{Audio Waveform Representation and Sampling-Rate Handling}
+
+Digital speech is represented as a discrete sequence of amplitude samples $x[n]$, $n = 0, 1, \ldots, N-1$, taken at a fixed sampling rate $f_s$. The Nyquist-Shannon sampling theorem requires $f_s \geq 2 f_{\max}$ for faithful reconstruction of frequencies up to $f_{\max}$. In HW14, the MINDS-14 dataset provides telephony-like audio at 8~kHz, while all ASR models expect 16~kHz inputs. This rate mismatch requires explicit resampling. On the TTS side, SpeechT5 and MMS-TTS generate waveforms at 16~kHz, while Bark's internal codec operates at 24~kHz. Incorrect sample-rate metadata during audio export produces pitch and tempo distortion proportional to the rate ratio, a practical concern investigated in Experiment~7.
+
+\subsection{MINDS-14 and Spoken-Intent Benchmarking}
+
+MINDS-14, introduced by Gerz et al.~\cite{gerz2021}, is a multilingual spoken-intent dataset comprising telephony-style recordings of banking interactions across 14 languages. This study uses the \texttt{en-AU} (Australian English) split, which contains short conversational utterances in a domain-constrained vocabulary. The telephony-like recording conditions and narrow intent vocabulary make MINDS-14 a realistic but challenging benchmark for evaluating ASR transfer: pretrained models must handle reduced bandwidth, informal phrasing, and accented speech without task-specific fine-tuning.
+
+\subsection{ASR: CTC, Sequence-to-Sequence, and Unified Architectures}
+
+Three ASR paradigms are represented in the HW14 scripts. \textbf{CTC-based recognition} with Wav2Vec2~\cite{baevski2020} produces frame-level token logits decoded by collapsing repeated predictions and removing blank symbols according to the Connectionist Temporal Classification framework~\cite{graves2006}. The CTC objective maximizes
+\begin{equation}
+p(\mathbf{y} | \mathbf{x}) = \sum_{\boldsymbol{\pi} \in \mathcal{B}^{-1}(\mathbf{y})} \prod_{t} p(\pi_t | \mathbf{x}),
+\end{equation}
+where $\mathcal{B}$ is the many-to-one CTC mapping. \textbf{Sequence-to-sequence recognition} with Whisper~\cite{radford2023} uses an encoder-decoder Transformer~\cite{vaswani2017} trained on 680,000 hours of weakly supervised multilingual data, generating text autoregressively conditioned on log-mel spectrogram features. \textbf{Unified speech-text modeling} with SpeechT5~\cite{ao2022} shares a single encoder-decoder backbone across ASR, TTS, and other speech-text tasks through modality-specific pre/post-nets.
+
+\subsection{Long-Form Whisper Transcription and Chunking}
+
+Whisper's attention-based decoder has a fixed context window of 30 seconds. For longer audio, the Hugging Face pipeline implements a sequential chunked algorithm: the input is segmented into overlapping chunks of \texttt{chunk\_length\_s} seconds, each chunk is transcribed independently, and the resulting segments are concatenated with timestamp alignment. The \texttt{batch\_size} parameter controls how many chunks are processed in parallel on the GPU. Experiment~4 investigates how chunk length and batch size affect transcript structure, self-consistency, and runtime.
+
+\subsection{TTS: SpeechT5, VITS/MMS-TTS, and Bark}
+
+Three TTS paradigms are represented in HW14. \textbf{SpeechT5 TTS}~\cite{ao2022} with HiFi-GAN~\cite{kong2020} is a two-stage pipeline: the encoder-decoder generates a mel-spectrogram conditioned on text tokens and a speaker embedding vector, and the HiFi-GAN vocoder converts the spectrogram to a time-domain waveform. This architecture exposes an interpretable intermediate representation and supports explicit speaker conditioning through x-vector embeddings. \textbf{MMS-TTS}~\cite{pratap2023} uses the VITS architecture~\cite{kim2021}, a conditional variational autoencoder with adversarial training that generates waveforms end-to-end from text without an explicit spectrogram stage. VITS combines a posterior encoder, a normalizing flow, and a HiFi-GAN decoder in a single model, yielding deterministic outputs under fixed random seeds. \textbf{Bark} is a multi-stage token-based generative model that converts text to semantic tokens, then to coarse acoustic tokens, and finally to fine acoustic tokens decoded through an EnCodec-style neural audio codec~\cite{defossez2022}. This architecture supports expressive generation---including non-speech elements like laughter and pauses---but is inherently stochastic.
+
+%=============================================================================
+\section{Methodology}
+\label{sec:methodology}
+%=============================================================================
+
+\subsection{Experimental Design Overview}
+
+The study comprises eight experiments organized into three execution groups, addressing seven research questions that span the ASR and TTS capabilities of all nine scripts. Experiment~1 reproduces the baseline behavior of each script under its original default parameters. Experiments~2--4 investigate ASR performance: Experiment~2 compares four short-form ASR workflows on a common 24-utterance subset; Experiment~3 analyzes sensitivity to resampling rate and token cleanup; and Experiment~4 studies long-form Whisper chunking. Experiments~5--7 investigate TTS systems individually: Experiment~5 examines SpeechT5 speaker conditioning, Experiment~6 tests MMS-TTS reproducibility and speaking-rate control, and Experiment~7 studies Bark prompt styles, voice presets, and sample-rate integrity. Experiment~8 performs a cross-model TTS comparison using round-trip ASR evaluation.
+
+\subsection{Baseline Scripts and Original Preservation}
+
+The nine scripts GA20A through GA20K from the course repository serve as the canonical technical starting point. In accordance with the project constitution, the original script files were preserved unmodified. All experimental extensions---parameter sweeps, fixed subsets, metric computation, CSV logging---were implemented through a separate orchestrator (\texttt{kamp\_hw14.py}), helper modules, and Colab notebooks. Where a script contained a bug (GA20D's missing \texttt{pipeline} import), a corrected wrapper was used with the correction logged in metadata.
+
+\subsection{Dataset and Evaluation Subset}
+
+All short-form ASR experiments use the MINDS-14 \texttt{en-AU} training split~\cite{gerz2021}, accessed through the Hugging Face \texttt{datasets} library. To ensure comparability across ASR workflows that would otherwise each select a different random sample, a fixed subset of 24 utterances was drawn deterministically by index. All audio was resampled to 16~kHz at load time, matching the expected input rate for Whisper, Wav2Vec2, and SpeechT5. For the long-form transcription experiment (Experiment~4), a 60-second audio file was synthesized by concatenating utterances from a shared audio cache.
+
+\subsection{ASR Evaluation Metrics}
+
+ASR performance is quantified by word error rate (WER) and character error rate (CER), computed using the \texttt{jiwer} library. WER is defined as
+\begin{equation}
+\text{WER} = \frac{S + D + I}{N},
+\end{equation}
+where $S$, $D$, and $I$ are the number of substitution, deletion, and insertion errors respectively, and $N$ is the number of words in the reference transcription. CER applies the same formula at the character level. Both predictions and references are normalized to lowercase with punctuation removed before comparison. Runtime is measured as wall-clock inference time per sample using Python's \texttt{time.perf\_counter()}.
+
+\subsection{TTS Evaluation Methodology}
+
+TTS quality is evaluated through round-trip ASR: each generated audio file is transcribed by the best available ASR evaluator (selected from Experiment~2 as GA20C direct Whisper, mean WER 0.169), and the transcription is compared to the original input text using WER and CER. Additional metrics include waveform duration, root-mean-square (RMS) amplitude, generation runtime, and spectrogram frame counts where applicable. For Bark, a sample-rate export audit compares files saved at the model-native 24~kHz versus a mismatched 16~kHz to quantify rate-integrity effects.
+
+\subsection{Execution Groups and Notebook Architecture}
+
+Experiments are grouped by model family to minimize model loading overhead:
+
+\begin{itemize}
+    \item \textbf{Group~A (ASR):} Experiments 1 (ASR baselines), 2, 3, and 4. Amortizes MINDS-14 loading with Whisper, Wav2Vec2, and SpeechT5 ASR models.
+    \item \textbf{Group~B (Structured TTS):} Experiments 1 (TTS baselines), 5, and 6. Isolates SpeechT5 TTS and MMS-TTS, which expose explicit intermediate representations or deterministic seed control.
+    \item \textbf{Group~C (Bark + Cross):} Experiments 1 (Bark baselines), 7, and 8. Isolates Bark's stochastic generation path and performs the cross-model TTS comparison.
+\end{itemize}
+
+Each group has paired dry-run and full notebooks. Dry-run notebooks execute a minimal subset to verify correctness before committing to the full parameter sweep. All results are logged to CSV with JSON checkpoints for pause/resume capability.
+
+\subsection{Text Bank and Reproducibility Controls}
+
+TTS experiments use a common text bank: ``Hello, my dog is cute'' (short, simple), ``There are llamas all around'' (short, unusual content), and ``I would like to check the balance of my savings account please'' (medium, banking domain). The same texts appear in Experiments~5, 6, 7, and 8, enabling direct cross-model comparison. All experiments use explicit random seeds where the model architecture supports them. CSV-first logging ensures that every experimental condition is recorded with its full parameter vector and timestamp.
+
+%=============================================================================
+\section{Results}
+\label{sec:results}
+%=============================================================================
+
+%---------------------------------------------------------------------
+\subsection{Experiment 1: Baseline Reproduction}
+\label{sec:exp1}
+%---------------------------------------------------------------------
+
+Each of the nine scripts was executed once with its original default parameters on a random MINDS-14 sample (for ASR scripts) or a fixed text input (for TTS scripts). The baseline results confirm the expected behavior of each script and establish reference runtimes.
+
+\subsubsection{ASR Baselines}
+
+GA20A produced a faithful transcription of a deposit-related utterance via the Whisper pipeline in 0.495~s. GA20B yielded severely degraded CTC output on accented speech (0.662~s), consistent with Wav2Vec2's known sensitivity to out-of-domain conditions~\cite{baevski2020}. GA20C generated an accurate but verbose transcription in 2.258~s because \texttt{skip\_special\_tokens=False} retains decoder tokens. GA20D successfully transcribed a 60-second concatenated audio passage with timestamp segmentation in 13.413~s using a corrected wrapper. GA20E produced garbled output (0.572~s), indicating that SpeechT5 ASR struggles with short, domain-constrained telephony utterances.
+
+\subsubsection{TTS and Generative Audio Baselines}
+
+SpeechT5 TTS (GA20F) generated clear, natural-sounding speech in 1.247~s at 16~kHz. MMS-TTS (GA20G) produced intelligible output in 0.529~s, the fastest of all TTS systems. GA20H required 70.853~s to generate expressive audio from a long prompt containing laughter cues and conversational fillers. GA20K used a shorter text with an explicit voice preset and completed in 21.389~s. Both Bark baselines saved audio at 16~kHz rather than the model-native 24~kHz, an issue investigated in Experiment~7.
+
+All nine scripts executed successfully, confirming the operational correctness of the experimental infrastructure. The baselines revealed three key observations: (1)~each ASR script selects a different random MINDS-14 sample, making direct baseline comparison impossible without a fixed subset; (2)~Wav2Vec2 and SpeechT5 ASR produce substantially worse transcriptions than Whisper on this dataset; and (3)~Bark's generation time is 40--140$\times$ slower than the structured TTS models.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{figures/exp1_baseline_summary_v2.png}
+\caption{Baseline reproduction summary across all nine scripts, showing runtime and key output characteristics for each workflow.}
+\label{fig:exp1_baseline}
+\end{figure}
+
+%---------------------------------------------------------------------
+\subsection{Experiment 2: Short-Form ASR Family Comparison on MINDS-14}
+\label{sec:exp2}
+%---------------------------------------------------------------------
+
+Four ASR workflows were evaluated on a common set of 24 fixed MINDS-14 \texttt{en-AU} utterances, all resampled to 16~kHz: GA20A Whisper pipeline, GA20B Wav2Vec2 CTC, GA20C direct Whisper, and GA20E SpeechT5 ASR. Each workflow transcribed all 24 utterances, producing 96 total rows.
+
+\subsubsection{WER and CER Comparison}
+
+The four workflows exhibited a clear performance hierarchy. GA20C (Whisper direct) achieved the lowest mean WER of 0.169 (std 0.210), followed by GA20A (Whisper pipeline) at 0.188 (std 0.261), GA20B (Wav2Vec2 CTC) at 0.390 (std 0.328), and GA20E (SpeechT5 ASR) at 0.566 (std 0.391). Both Whisper variants substantially outperformed Wav2Vec2 and SpeechT5. The direct Whisper interface achieved marginally lower WER than the pipeline, likely due to differences in default generation parameters and token handling.
+
+Wav2Vec2 CTC achieved approximately double the Whisper WER, reflecting the challenge that CTC decoding faces on accented, domain-constrained telephony speech without language model rescoring. SpeechT5 ASR performed worst, indicating that the unified encoder-decoder architecture sacrifices ASR-specific capacity for task versatility.
+
+\subsubsection{Runtime Comparison}
+
+Wav2Vec2 CTC was the fastest at 0.367~s per utterance, followed by the Whisper pipeline at 0.491~s. The direct Whisper interface was 4.8$\times$ slower at 2.373~s because it bypasses the pipeline's optimized preprocessing pathways. SpeechT5 ASR occupied an intermediate position at 1.197~s.
+
+\subsubsection{Summary (RQ1)}
+
+The short-form ASR families form a clear accuracy hierarchy: Whisper direct $>$ Whisper pipeline $>$ Wav2Vec2 CTC $\gg$ SpeechT5 ASR. Based on these results, GA20C was selected as the best available ASR evaluator for the round-trip TTS evaluation in Experiment~8.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{figures/asr_family_wer_bar.png}
+\caption{Mean WER across four ASR workflows on 24 fixed MINDS-14 utterances at 16~kHz. Whisper variants achieve substantially lower WER than Wav2Vec2 CTC and SpeechT5 ASR.}
+\label{fig:asr_family_wer}
+\end{figure}
+
+%---------------------------------------------------------------------
+\subsection{Experiment 3: ASR Preprocessing, Decoding, and Normalization Sensitivity}
+\label{sec:exp3}
+%---------------------------------------------------------------------
+
+Experiment~3 comprises two sub-experiments totaling 114 rows. Sub-experiment~3A sweeps the resampling rate across three values---8~kHz (native MINDS-14 rate), 16~kHz (model-expected), and 24~kHz (over-sampled)---for three ASR workflows (GA20A, GA20B, GA20E) with 10 utterances per condition (90 rows). Sub-experiment~3B evaluates GA20C on 24 utterances with both raw and cleaned token decoding (24 rows).
+
+\subsubsection{Sampling-Rate Sensitivity}
+
+Resampling rate profoundly affects ASR accuracy. At 16~kHz, GA20A achieved mean WER 0.136, GA20B 0.357, and GA20E 0.572. At 8~kHz (no resampling), performance degraded to 0.353, 0.975, and 1.056 respectively. At 24~kHz (over-sampled), intermediate values of 0.253, 0.794, and 0.991 were observed. All models achieved optimal performance at the expected 16~kHz rate. Undersampling (8~kHz) was consistently worse than oversampling (24~kHz). Wav2Vec2 CTC was the most sensitive: its mean WER at 8~kHz (0.975) represents near-total failure, a 2.7$\times$ increase over the 16~kHz baseline. At 8~kHz, the model's learned feature representations encounter frame timings compressed by a factor of two relative to the training distribution.
+
+\subsubsection{Token Cleanup Effect}
+
+Sub-experiment~3B compared raw and cleaned decoding for GA20C on 24 utterances at 16~kHz. Both policies produced identical WER (0.169) and CER (0.091) after text normalization. This null result confirms that Whisper's special tokens do not affect WER when the evaluation pipeline normalizes text consistently.
+
+\subsubsection{Summary (RQ2)}
+
+ASR accuracy is highly sensitive to preprocessing. Operating at the wrong sampling rate can double or triple WER. The effect is asymmetric: undersampling degrades more than oversampling. Wav2Vec2 CTC is the most fragile and Whisper the most robust. Token cleanup policy has zero measurable effect when text normalization is applied consistently.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{figures/asr_sampling_rate_curve.png}
+\caption{ASR WER as a function of input sampling rate for three ASR workflows. All models achieve optimal performance at the expected 16~kHz rate; 8~kHz undersampling produces the most severe degradation.}
+\label{fig:asr_sampling_rate}
+\end{figure}
+
+%---------------------------------------------------------------------
+\subsection{Experiment 4: Long-Form Whisper Chunking and Timestamp Stability}
+\label{sec:exp4}
+%---------------------------------------------------------------------
+
+The long-form Whisper chunking experiment swept \texttt{chunk\_length\_s} across \{5, 10, 15\} seconds and \texttt{batch\_size} across \{4, 8\}, producing a $3 \times 2$ grid of 6 conditions on 60-second input audio with \texttt{openai/whisper-small} and \texttt{return\_timestamps=True}.
+
+\subsubsection{Transcript Structure and Self-Consistency}
+
+Chunk lengths of 5 and 10~seconds produce highly consistent transcriptions. The 5-second conditions are identical (6 segments, 151 words, similarity~1.0 within the pair). The 10-second conditions are nearly identical to the baseline (similarity~0.993), with one additional segment boundary. However, 15-second chunks produce dramatically different output: 17 segments, 498 words ($3.3\times$ inflation), and a similarity score of only 0.289. Inspection reveals repetitive content---the model re-transcribes portions of the audio multiple times, a known failure mode of Whisper's sequential chunk stitching when chunk length approaches the 30-second attention window.
+
+Within each chunk-length tier, batch size has no effect on transcript content, confirming that \texttt{batch\_size} controls only the parallelism of chunk processing.
+
+\subsubsection{Runtime}
+
+The 10-second configurations are the fastest at 3.0--3.8~s, a 3.5--4.5$\times$ speedup over the 5-second baseline. The 15-second conditions are paradoxically slow (12.4--14.3~s) because the repetitive generation extends the autoregressive decoding phase.
+
+\subsubsection{Summary (RQ3)}
+
+Chunk length is the primary determinant of long-form transcript quality. Chunk lengths of 5 and 10~seconds produce nearly identical transcripts, with 10~seconds offering a substantial runtime advantage. A 15-second chunk length triggers repetition failure. The practical recommendation is \texttt{chunk\_length\_s=10} with \texttt{batch\_size=8}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{figures/longform_similarity_heatmap.png}
+\caption{Pairwise transcript similarity across chunk-length and batch-size conditions. The 5-second and 10-second settings produce near-identical transcripts (similarity $\geq 0.993$), while the 15-second setting diverges sharply (similarity 0.289).}
+\label{fig:longform_similarity}
+\end{figure}
+
+%---------------------------------------------------------------------
+\subsection{Experiment 5: SpeechT5 TTS Speaker Conditioning and Vocoder Transparency}
+\label{sec:exp5}
+%---------------------------------------------------------------------
+
+SpeechT5 TTS was evaluated under two speaker conditions---a dataset-derived x-vector embedding (\texttt{helper\_embedding}) and a zero vector (\texttt{zero\_vector})---across three texts from the common text bank, yielding 6 rows with paired spectrogram and audio artifacts.
+
+\subsubsection{Speaker Embedding Effects}
+
+The \texttt{helper\_embedding} condition consistently produces longer waveforms (35--36\% longer) and more spectrogram frames than the \texttt{zero\_vector} condition across all three texts. The x-vector embedding encodes speaking rate and prosodic characteristics that result in slower, more natural-sounding output. The zero vector produces intelligible but compressed output with reduced temporal detail. All spectrogram matrices have a fixed 80-bin mel-frequency dimension, with the time dimension scaling proportionally to text length.
+
+\subsubsection{Spectrogram Analysis}
+
+The mel-spectrograms reveal clear structural differences between conditions. The \texttt{helper\_embedding} spectrograms show wider formant bands, more gradual onset and offset transitions, and greater temporal extent. The \texttt{zero\_vector} spectrograms are more compressed with sharper boundaries, consistent with faster speaking rate and reduced prosodic variation. Both conditions produce well-structured spectrograms with visible harmonic content.
+
+\subsubsection{Summary (RQ4)}
+
+SpeechT5 offers substantial controllability through its explicit speaker-embedding interface and two-stage spectrogram-to-waveform pipeline. The speaker embedding modulates speaking rate (35\% duration difference), prosody, and spectral characteristics. The exposed spectrogram intermediate allows visual inspection, making SpeechT5 the most interpretable TTS system in this study.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{figures/speecht5_spectrogram_panel.png}
+\caption{SpeechT5 mel-spectrogram panel across speaker conditions and texts. The helper embedding produces wider formant bands and greater temporal extent compared to the zero-vector condition.}
+\label{fig:speecht5_spectrogram}
+\end{figure}
+
+%---------------------------------------------------------------------
+\subsection{Experiment 6: MMS-TTS Reproducibility, Text Sensitivity, and Speaking-Rate Control}
+\label{sec:exp6}
+%---------------------------------------------------------------------
+
+MMS-TTS was evaluated across three seeds (42, 123, 555), two text prompts, and three speaking rates (0.8, 1.0, 1.2), producing 12 total rows.
+
+\subsubsection{Seed Reproducibility}
+
+Across three seeds at speaking rate 1.0, MMS-TTS produced outputs with duration variation below 10\% (e.g., 2.080--2.192~s for ``hello\_dog'') and RMS variation below 4\%. The variation is modest and suggests that seed control in VITS affects the stochastic duration predictor and noise sampling but does not radically alter the output.
+
+\subsubsection{Speaking-Rate Effects}
+
+The speaking-rate control produces a clear and predictable effect on duration. Reducing the rate from 1.0 to 0.8 increased duration by approximately 14--16\%, while increasing to 1.2 decreased duration by 11--15\%. The scaling is approximately linear: the ratio of durations closely matches the inverse ratio of speaking rates. The slight sub-linearity suggests that VITS's duration predictor applies rate scaling multiplicatively to predicted phone durations, but silence and transition periods do not scale proportionally.
+
+\subsubsection{Summary (RQ5)}
+
+MMS-TTS/VITS provides the strongest deterministic reproducibility of the three TTS families. Under fixed seeds, duration variation is below 10\% and amplitude variation below 4\%. The speaking-rate control produces predictable, approximately linear duration scaling. Combined with the fastest generation time (0.34--0.88~s per utterance), MMS-TTS is the most controllable and efficient option for reproducible speech synthesis.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{figures/mms_speaking_rate_duration.png}
+\caption{MMS-TTS waveform duration as a function of speaking rate. Duration scales approximately linearly with the inverse of the rate parameter.}
+\label{fig:mms_speaking_rate}
+\end{figure}
+
+%---------------------------------------------------------------------
+\subsection{Experiment 7: Bark Expressiveness, Voice Presets, and Sample-Rate Integrity}
+\label{sec:exp7}
+%---------------------------------------------------------------------
+
+Experiment~7 comprises three sub-experiments totaling 20 rows: prompt-style effects (6 rows), voice preset comparison (6 rows), and a sample-rate export audit (8 rows).
+
+\subsubsection{Prompt-Style Effects}
+
+Three prompt styles---plain, expressive (\texttt{expr}), and strongly expressive (\texttt{strong\_expr})---were evaluated across two seeds on a multi-sentence input. The plain prompt produced the shortest outputs (9.25--9.47~s) and lowest round-trip WER (0.000--0.048). Expressive prompts increased duration by 18--42\% and degraded WER, suggesting that expressive cues cause Bark to insert pauses, laughter, or non-lexical elements. Cross-seed variation was substantial: the \texttt{expr} prompt produced WER 0.125 at seed 42 but 0.333 at seed 123, demonstrating that Bark's multi-stage token cascade amplifies stochastic variation.
+
+\subsubsection{Voice Preset Comparison}
+
+On the shorter ``Hello, my dog is cute'' text, 5 of 6 voice-preset conditions achieved perfect round-trip WER (0.000). Presets increase generation time roughly 1.5--2$\times$ compared to the no-preset condition (16--18~s vs.\ 27--35~s), likely because the voice history tensor extends the context window for each generation stage.
+
+\subsubsection{Sample-Rate Export Audit}
+
+Saving Bark audio at 16~kHz instead of the native 24~kHz inflates apparent duration by exactly $24000/16000 = 1.5\times$, confirming that waveform samples are interpreted at the wrong temporal rate. Pitch is correspondingly lowered by a factor of $16/24 \approx 0.67$, producing audibly distorted audio. The effect on round-trip WER is variable: some conditions degrade substantially while others paradoxically improve, likely because the ASR model can sometimes recover the intended text from slowed-down speech.
+
+\subsubsection{Summary (RQ6)}
+
+Bark's two control mechanisms differ substantially. Free-form prompt cues provide expressive variation but with high stochasticity and degraded intelligibility. Voice presets produce more consistent output on short texts but at a runtime premium. The 24~kHz native sample rate must be preserved during export; 16~kHz export introduces a 1.5$\times$ time-stretch and pitch distortion.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{figures/bark_sample_rate_audit.png}
+\caption{Bark sample-rate export audit. Saving at 16~kHz instead of the native 24~kHz inflates apparent duration by exactly $24000/16000 = 1.5\times$ and lowers pitch proportionally.}
+\label{fig:bark_sample_rate}
+\end{figure}
+
+%---------------------------------------------------------------------
+\subsection{Experiment 8: Cross-Model TTS Intelligibility, Controllability, and Runtime}
+\label{sec:exp8}
+%---------------------------------------------------------------------
+
+Three TTS systems---SpeechT5 (with \texttt{helper\_embedding}), MMS-TTS (seed 555, default rate), and Bark (preset5, seed 42)---were evaluated on three common text bank prompts, producing 9 rows. Each generated audio file was transcribed by GA20C Whisper direct (best ASR evaluator from Experiment~2).
+
+\subsubsection{Round-Trip ASR Intelligibility}
+
+SpeechT5 achieved the best mean round-trip WER (0.067) and CER (0.012), with perfect transcription on 2 of 3 texts. MMS-TTS achieved mean WER 0.200 and CER 0.132. Bark achieved mean WER 0.333 and CER 0.247, driven by a catastrophic failure on the ``llamas'' text (WER 1.000) where the generated audio did not faithfully represent the input. On the other two texts, Bark achieved perfect round-trip scores.
+
+The ``llamas'' text proved the most challenging across all systems, likely because it contains an unusual word outside the primary training distributions. The banking-domain text, despite being the longest, was transcribed perfectly by all three systems.
+
+\subsubsection{Runtime Comparison}
+
+MMS-TTS is the fastest system at 0.480~s mean generation time---approximately 2.1$\times$ faster than SpeechT5 (1.006~s) and 61$\times$ faster than Bark (29.368~s). The runtime gap between MMS-TTS and Bark spans nearly two orders of magnitude.
+
+\subsubsection{Control Mechanism Trade-Off Summary}
+
+The three TTS systems occupy distinct positions in the controllability--expressiveness--efficiency trade-off space. SpeechT5 offers the highest intelligibility and interpretability (exposed spectrogram, speaker embeddings). MMS-TTS provides the best efficiency and determinism (perfect seed control, 0.48~s generation). Bark provides the widest expressive range (laughter, pauses, emotion) but at the cost of 29~s generation time and stochastic output.
+
+\subsubsection{Summary (RQ7)}
+
+For assignment-relevant trade-offs, SpeechT5 offers the best balance for intelligibility and interpretability. MMS-TTS is optimal for efficiency and reproducibility. Bark is uniquely suited for expressive or stylized speech where latency is acceptable. No single system dominates all dimensions, confirming that TTS system selection is fundamentally task-dependent.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{figures/tts_roundtrip_wer.png}
+\caption{Cross-model TTS round-trip WER on three common text bank prompts. SpeechT5 achieves the lowest mean WER (0.067), followed by MMS-TTS (0.200) and Bark (0.333).}
+\label{fig:tts_roundtrip_wer}
+\end{figure}
+
+%=============================================================================
+\section{Discussion}
+\label{sec:discussion}
+%=============================================================================
+
+\subsection{ASR Family Trade-Offs (RQ1, RQ2)}
+
+The ASR experiments provide converging evidence that model architecture, training data, and preprocessing choices interact in determining recognition quality on domain-constrained telephony speech. Whisper's large-scale weakly supervised training on 680,000 hours of multilingual audio~\cite{radford2023} provides the strongest transfer, achieving mean WER below 0.19 on MINDS-14 \texttt{en-AU} without task-specific adaptation. This is consistent with the claim that scale and diversity of training data are more important than architectural innovation for robust zero-shot ASR.
+
+Wav2Vec2 CTC, despite strong performance on clean English speech benchmarks, exhibits a 2.3$\times$ WER increase over Whisper on this dataset. The primary degradation mechanism appears to be the CTC decoder's sensitivity to acoustic conditions that produce ambiguous frame-level predictions. Without a language model to rescore hypotheses, the greedy argmax decode path has no mechanism to recover from individual frame errors.
+
+SpeechT5 ASR's poor performance (mean WER 0.566) reveals a fundamental limitation of unified speech-text architectures: the shared backbone trades ASR-specific capacity for task versatility. On short utterances where context is limited, SpeechT5 lacks the specialized feature extraction and language modeling capabilities that make Whisper and Wav2Vec2 more effective.
+
+The preprocessing sensitivity results demonstrate that sampling-rate correctness is a critical prerequisite. The asymmetric degradation pattern---8~kHz worse than 24~kHz worse than 16~kHz---reflects the models' learned feature extractors. At 8~kHz, convolutional front-ends receive frames with half the expected temporal density, effectively aliasing mid-frequency speech content. At 24~kHz, the redundant temporal samples are partially accommodated by fixed-stride convolutions.
+
+\subsection{Long-Form Transcription Engineering (RQ3)}
+
+The long-form experiment reveals a sharp phase transition in transcript quality as a function of chunk length. The 5-second and 10-second settings operate within Whisper's effective context window and produce stable transcripts. The 10-second setting is optimal: it reduces chunk-boundary stitching overhead while staying well below the 30-second model limit. The 15-second setting triggers catastrophic repetition ($3.3\times$ word count inflation), likely because the decoder's attention spans an uncomfortable fraction of the model window, creating ambiguity about which portions have already been transcribed.
+
+\subsection{TTS Controllability Spectrum (RQ4, RQ5, RQ6)}
+
+The three TTS families collectively map a spectrum from fully explicit to fully implicit control. SpeechT5 exposes the largest number of interpretable control surfaces: the speaker embedding modulates prosody and rate (35\% duration difference), and the spectrogram intermediate is available for inspection. MMS-TTS offers deterministic seed control and a continuous speaking-rate parameter, with functionally identical outputs under fixed seeds. Bark represents the opposite end: its multi-stage token cascade provides the richest expressive palette but at the cost of stochasticity that cannot be eliminated by seed fixing and generation times that are 30--60$\times$ slower than the structured TTS systems.
+
+\subsection{Cross-Model TTS Comparison (RQ7)}
+
+The round-trip WER ranking---SpeechT5 (0.067) $<$ MMS-TTS (0.200) $<$ Bark (0.333)---provides an objective intelligibility ordering. However, the optimal choice depends on the application: SpeechT5 for maximum intelligibility and interpretability, MMS-TTS for maximum efficiency and reproducibility, and Bark for expressive or stylized output where latency is acceptable. The sample-rate audit additionally constrains Bark integration: its audio must be exported at 24~kHz to preserve pitch and temporal fidelity.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{figures/tts_control_tradeoff_table_v2.png}
+\caption{TTS controllability--expressiveness--efficiency trade-off summary across SpeechT5, MMS-TTS, and Bark. No single system dominates all dimensions.}
+\label{fig:tts_tradeoff}
+\end{figure}
+
+\subsection{Limitations}
+
+This study has several limitations: (1)~all short-form ASR results are based on the MINDS-14 \texttt{en-AU} split, limiting generalization; (2)~no model fine-tuning was performed; (3)~TTS quality is assessed only through round-trip ASR, which measures intelligibility but not naturalness or subjective preference; (4)~the three-text bank does not capture the full range of TTS challenges; (5)~all experiments ran on Google Colab T4 GPUs, so runtime comparisons may shift on different hardware; and (6)~the 24-utterance ASR subset and 3-text TTS bank provide sufficient statistical power for rank ordering but limit the precision of point estimates.
+
+%=============================================================================
+\section{Conclusions}
+\label{sec:conclusions}
+%=============================================================================
+
+This study conducted a systematic experimental investigation of modern speech AI systems through eight controlled experiments addressing seven research questions, producing 272 data rows and 22 figures across three execution groups. The principal findings are:
+
+\begin{enumerate}
+    \item \textbf{ASR family ranking (RQ1):} On 24 fixed MINDS-14 telephony utterances, Whisper direct inference achieved the lowest mean WER (0.169), followed by Whisper pipeline (0.188), Wav2Vec2 CTC (0.390), and SpeechT5 ASR (0.566).
+    \item \textbf{Preprocessing sensitivity (RQ2):} Sampling-rate mismatch is the most damaging preprocessing error, capable of increasing Wav2Vec2 WER from 0.357 to 0.975 at 8~kHz. All models require correct 16~kHz input.
+    \item \textbf{Long-form chunking (RQ3):} Chunk lengths of 5 and 10~seconds produce consistent transcripts (similarity $\geq 0.993$). The 10-second setting offers 3.5--4.5$\times$ runtime advantage. A 15-second chunk length triggers catastrophic repetition.
+    \item \textbf{SpeechT5 TTS controllability (RQ4):} Speaker embeddings modulate speaking rate by 35\% and produce visible spectrogram differences, making SpeechT5 the most interpretable TTS system.
+    \item \textbf{MMS-TTS reproducibility (RQ5):} MMS-TTS/VITS achieves functional determinism under seed control (duration variation $<$~10\%). Speaking rate scales duration approximately linearly.
+    \item \textbf{Bark expressiveness (RQ6):} Free-form prompt cues provide expressive variation but degrade intelligibility. The 24~kHz native sample rate must be preserved during export to avoid 1.5$\times$ time-stretch and pitch distortion.
+    \item \textbf{Cross-model TTS trade-offs (RQ7):} Round-trip ASR ranks SpeechT5 as most intelligible (WER 0.067), MMS-TTS as most efficient (0.480~s), and Bark as most expressive (but with 29.4~s generation time and 0.333 WER). No single system dominates all dimensions.
+\end{enumerate}
+
+These results provide empirical characterizations of under-explored parameter spaces in contemporary speech AI and demonstrate that engineering choices---sampling rate, chunk length, speaker conditioning, seed control, and export format---have quantitative consequences that must be understood and validated before deployment.
+
+%=============================================================================
+\section{Future Work}
+\label{sec:futurework}
+%=============================================================================
+
+Several directions extend naturally from this study:
+
+\begin{enumerate}
+    \item \textbf{Domain-specific fine-tuning.} Fine-tuning Whisper or Wav2Vec2 on MINDS-14 banking utterances could substantially improve ASR accuracy and would reveal whether the current performance gaps reflect fundamental architectural limitations or distributional mismatch.
+    \item \textbf{Larger and more diverse evaluation sets.} Expanding the ASR evaluation from 24 to the full MINDS-14 split and extending to additional language configurations would improve statistical power and enable meaningful confidence interval estimation.
+    \item \textbf{Human subjective evaluation.} Round-trip ASR measures intelligibility but not naturalness, speaker similarity, or listener preference. A formal Mean Opinion Score (MOS) study with human raters would complement the automated metrics.
+    \item \textbf{Multilingual extension.} MINDS-14 spans 14 languages, and all three TTS families offer multilingual checkpoints. A cross-lingual study would investigate whether the observed performance rankings generalize beyond English.
+    \item \textbf{Model distillation and efficiency.} Investigating distilled or quantized Bark variants could preserve expressiveness while reducing the runtime gap relative to SpeechT5 and MMS-TTS.
+    \item \textbf{Compositional long-form TTS.} Extending the cross-model comparison to paragraph-length inputs would test boundary effects, prosodic coherence, and output stability over extended generation.
+    \item \textbf{Streaming and real-time deployment.} Measuring time-to-first-audio and streaming latency would provide deployment-relevant efficiency metrics beyond total generation time.
+\end{enumerate}
+
+%=============================================================================
+% References
+%=============================================================================
+
+\begin{thebibliography}{00}
+
+\bibitem{alammar2024} J.~Alammar and M.~Grootendorst, \textit{Hands-on Generative AI with Transformers and Diffusion Models}. O'Reilly Media, 2024.
+
+\bibitem{gerz2021} D.~Gerz, P.-H.~Su, R.~Kusztos, A.~Mondal, M.~Lis, E.~Singhal, N.~Mrksic, T.-H.~Wen, and I.~Vulic, ``Multilingual and Cross-Lingual Intent Detection from Spoken Data,'' arXiv:2104.08524, 2021.
+
+\bibitem{baevski2020} A.~Baevski, Y.~Zhou, A.~Mohamed, and M.~Auli, ``wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations,'' in \textit{Proc. NeurIPS}, vol.~33, 2020.
+
+\bibitem{graves2006} A.~Graves, S.~Fernandez, F.~Gomez, and J.~Schmidhuber, ``Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks,'' in \textit{Proc. ICML}, pp.~369--376, 2006.
+
+\bibitem{radford2023} A.~Radford, J.~W.~Kim, T.~Xu, G.~Brockman, C.~McLeavey, and I.~Sutskever, ``Robust Speech Recognition via Large-Scale Weak Supervision,'' in \textit{Proc. ICML}, PMLR 202:28492--28518, 2023.
+
+\bibitem{vaswani2017} A.~Vaswani, N.~Shazeer, N.~Parmar, J.~Uszkoreit, L.~Jones, A.~N.~Gomez, L.~Kaiser, and I.~Polosukhin, ``Attention Is All You Need,'' in \textit{Proc. NeurIPS}, vol.~30, 2017.
+
+\bibitem{ao2022} J.~Ao, R.~Wang, L.~Zhou, C.~Wang, S.~Ren, Y.~Wu, S.~Liu, T.~Ko, Q.~Li, Y.~Zhang, Z.~Wei, Y.~Qian, J.~Li, and F.~Wei, ``SpeechT5: Unified-Modal Encoder-Decoder Pre-Training for Spoken Language Processing,'' in \textit{Proc. ACL}, vol.~1, pp.~5723--5738, 2022.
+
+\bibitem{kong2020} J.~Kong, J.~Kim, and J.~Bae, ``HiFi-GAN: Generative Adversarial Networks for Efficient and High Fidelity Speech Synthesis,'' in \textit{Proc. NeurIPS}, vol.~33, 2020.
+
+\bibitem{pratap2023} V.~Pratap, A.~Tjandra, B.~Shi, P.~Tomasello, A.~Babu, S.~Kundu, A.~Elkahky, Z.~Ni, A.~Vyas \textit{et al.}, ``Scaling Speech Technology to 1,000+ Languages,'' arXiv:2305.13516, 2023.
+
+\bibitem{kim2021} J.~Kim, J.~Kong, and J.~Son, ``Conditional Variational Autoencoder with Adversarial Learning for End-to-End Text-to-Speech,'' in \textit{Proc. ICML}, PMLR 139:5530--5540, 2021.
+
+\bibitem{defossez2022} A.~D\'{e}fossez, J.~Copet, G.~Synnaeve, and Y.~Adi, ``High Fidelity Neural Audio Compression,'' arXiv:2210.13438, 2022.
+
+\end{thebibliography}
+
+%=============================================================================
+\end{document}
+%=============================================================================

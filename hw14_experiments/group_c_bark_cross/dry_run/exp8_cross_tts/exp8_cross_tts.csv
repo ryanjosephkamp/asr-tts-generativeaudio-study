@@ -1,0 +1,2 @@
+experiment,system_id,source_script,text_tag,input_text,output_path,saved_sample_rate,waveform_duration_sec,generation_time_sec,asr_evaluator,round_trip_transcription,round_trip_wer,round_trip_cer,controllability_mode,reused_from_experiment,timestamp
+exp8_cross_tts,speecht5,GA20F,hello_dog,"Hello, my dog is cute.",hw14_experiments/group_c_bark_cross/dry_run/exp8_cross_tts/speecht5/hello_dog/ga20f_exp8_hello_dog.wav,16000,1.248,0.6703596019997349,ga20c_whisper_direct, Hello my dog is cute.,0.0,0.0,helper_embedding,,2026-04-04 04:34:03

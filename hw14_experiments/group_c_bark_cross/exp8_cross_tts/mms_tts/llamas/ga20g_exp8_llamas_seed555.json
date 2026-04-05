@@ -1,0 +1,20 @@
+{
+  "label": "ga20g_exp8_llamas_seed555",
+  "model_name": "facebook/mms-tts-eng",
+  "timestamp": "2026-04-04 05:22:23",
+  "input_sampling_rate": 16000,
+  "input_text": "There are llamas all around.",
+  "seed": 555,
+  "speaking_rate": 1.0,
+  "baseline_speaking_rate": 1.0,
+  "saved_sampling_rate": 16000,
+  "inference_time_sec": 0.42996874799996476,
+  "output_audio_path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/mms_tts/llamas/ga20g_exp8_llamas_seed555.wav",
+  "sample_rate": 16000,
+  "sample_count": 43776,
+  "duration_seconds": 2.736,
+  "rms": 0.12068523466587067,
+  "max_amplitude": 0.678314208984375,
+  "min_amplitude": -0.602752685546875,
+  "path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/mms_tts/llamas/ga20g_exp8_llamas_seed555.wav"
+}

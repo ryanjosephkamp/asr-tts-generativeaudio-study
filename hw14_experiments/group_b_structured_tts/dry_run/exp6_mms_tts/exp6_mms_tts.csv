@@ -1,0 +1,3 @@
+experiment,sub_experiment,script,model_name,seed,text_tag,input_text,speaking_rate,output_path,sample_rate_saved,waveform_num_samples,waveform_duration_sec,waveform_rms,generation_time_sec,timestamp
+exp6_mms_tts,6A,GA20G,facebook/mms-tts-eng,42,hello_dog,"Hello, my dog is cute.",1.0,hw14_experiments/group_b_structured_tts/dry_run/exp6_mms_tts/ga20g_exp6a_hello_dog_seed42.wav,16000,34048,2.128,0.10933960974216461,0.3495620290000261,2026-04-04 06:14:23
+exp6_mms_tts,6B,GA20G,facebook/mms-tts-eng,555,banking_request,I need to transfer money from savings to checking today.,0.8,hw14_experiments/group_b_structured_tts/dry_run/exp6_mms_tts/ga20g_exp6b_banking_request_rate0p8_seed555.wav,16000,74240,4.64,0.11067306995391846,0.5915262369999255,2026-04-04 06:14:23

@@ -1,0 +1,47 @@
+[NOTEBOOK] Starting Group B full run
+/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_auth.py:104: UserWarning: 
+Error while fetching `HF_TOKEN` secret value from your vault: 'Requesting secret HF_TOKEN timed out. Secrets can only be fetched when running from the Colab UI.'.
+You are not authenticated with the Hugging Face Hub in this notebook.
+If the error persists, please let us know by opening an issue on GitHub (https://github.com/huggingface/huggingface_hub/issues/new).
+  warnings.warn(
+[timer] ga20f_baseline: 1.247s
+[audio] Saved ga20f_baseline -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp1_baselines/ga20f_baseline/ga20f_baseline.wav @ 16000 Hz
+[timer] ga20g_baseline: 0.529s
+[audio] Saved ga20g_baseline -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp1_baselines/ga20g_baseline/ga20g_baseline.wav @ 16000 Hz
+[timer] ga20f_exp5_llamas_helper_embedding: 0.859s
+[audio] Saved ga20f_exp5_llamas_helper_embedding -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp5_speecht5_tts/ga20f_exp5_llamas_helper_embedding.wav @ 16000 Hz
+[timer] ga20f_exp5_llamas_zero_vector: 0.644s
+[audio] Saved ga20f_exp5_llamas_zero_vector -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp5_speecht5_tts/ga20f_exp5_llamas_zero_vector.wav @ 16000 Hz
+[timer] ga20f_exp5_hello_dog_helper_embedding: 0.628s
+[audio] Saved ga20f_exp5_hello_dog_helper_embedding -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp5_speecht5_tts/ga20f_exp5_hello_dog_helper_embedding.wav @ 16000 Hz
+[timer] ga20f_exp5_hello_dog_zero_vector: 0.549s
+[audio] Saved ga20f_exp5_hello_dog_zero_vector -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp5_speecht5_tts/ga20f_exp5_hello_dog_zero_vector.wav @ 16000 Hz
+[timer] ga20f_exp5_banking_request_helper_embedding: 1.493s
+[audio] Saved ga20f_exp5_banking_request_helper_embedding -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp5_speecht5_tts/ga20f_exp5_banking_request_helper_embedding.wav @ 16000 Hz
+[timer] ga20f_exp5_banking_request_zero_vector: 1.158s
+[audio] Saved ga20f_exp5_banking_request_zero_vector -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp5_speecht5_tts/ga20f_exp5_banking_request_zero_vector.wav @ 16000 Hz
+[timer] ga20g_exp6a_hello_dog_seed42: 0.356s
+[audio] Saved ga20g_exp6a_hello_dog_seed42 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/ga20g_exp6a_hello_dog_seed42.wav @ 16000 Hz
+[timer] ga20g_exp6a_hello_dog_seed123: 0.361s
+[audio] Saved ga20g_exp6a_hello_dog_seed123 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/ga20g_exp6a_hello_dog_seed123.wav @ 16000 Hz
+[timer] ga20g_exp6a_hello_dog_seed555: 0.342s
+[audio] Saved ga20g_exp6a_hello_dog_seed555 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/ga20g_exp6a_hello_dog_seed555.wav @ 16000 Hz
+[timer] ga20g_exp6a_banking_request_seed42: 0.569s
+[audio] Saved ga20g_exp6a_banking_request_seed42 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/ga20g_exp6a_banking_request_seed42.wav @ 16000 Hz
+[timer] ga20g_exp6a_banking_request_seed123: 0.521s
+[audio] Saved ga20g_exp6a_banking_request_seed123 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/ga20g_exp6a_banking_request_seed123.wav @ 16000 Hz
+[timer] ga20g_exp6a_banking_request_seed555: 0.530s
+[audio] Saved ga20g_exp6a_banking_request_seed555 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/ga20g_exp6a_banking_request_seed555.wav @ 16000 Hz
+[timer] ga20g_exp6b_hello_dog_rate0p8_seed555: 0.520s
+[audio] Saved ga20g_exp6b_hello_dog_rate0p8_seed555 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/ga20g_exp6b_hello_dog_rate0p8_seed555.wav @ 16000 Hz
+[timer] ga20g_exp6b_hello_dog_rate1p0_seed555: 0.345s
+[audio] Saved ga20g_exp6b_hello_dog_rate1p0_seed555 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/ga20g_exp6b_hello_dog_rate1p0_seed555.wav @ 16000 Hz
+[timer] ga20g_exp6b_hello_dog_rate1p2_seed555: 0.442s
+[audio] Saved ga20g_exp6b_hello_dog_rate1p2_seed555 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/ga20g_exp6b_hello_dog_rate1p2_seed555.wav @ 16000 Hz
+[timer] ga20g_exp6b_banking_request_rate0p8_seed555: 0.879s
+[audio] Saved ga20g_exp6b_banking_request_rate0p8_seed555 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/ga20g_exp6b_banking_request_rate0p8_seed555.wav @ 16000 Hz
+[timer] ga20g_exp6b_banking_request_rate1p0_seed555: 0.547s
+[audio] Saved ga20g_exp6b_banking_request_rate1p0_seed555 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/ga20g_exp6b_banking_request_rate1p0_seed555.wav @ 16000 Hz
+[timer] ga20g_exp6b_banking_request_rate1p2_seed555: 0.576s
+[audio] Saved ga20g_exp6b_banking_request_rate1p2_seed555 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/ga20g_exp6b_banking_request_rate1p2_seed555.wav @ 16000 Hz
+{'group_name': 'group_b_structured_tts', 'mode': 'full', 'executed_at': '2026-04-04 06:56:00', 'group_root': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts', 'shared_assets': {'fixed_manifest': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/manifests/minds14_fixed_subset.csv', 'resampling_manifest': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/manifests/minds14_resampling_subset.csv', 'text_bank': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/text_bank/text_bank.json', 'long_audio': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/long_audio_cache/long_audio.wav'}, 'counts': {'baseline_rows': 2, 'exp5_rows': 6, 'exp6_rows': 12}, 'paths': {'exp1_csv': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp1_baselines/exp1_baselines.csv', 'exp5_csv': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp5_speecht5_tts/exp5_speecht5_tts.csv', 'exp6_csv': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/exp6_mms_tts.csv', 'checkpoint': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/checkpoint.json', 'summary': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/group_b_full_summary.json'}}

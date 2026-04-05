@@ -1,0 +1,18 @@
+{
+  "label": "ga20e_baseline",
+  "model_name": "microsoft/speecht5_asr",
+  "timestamp": "2026-04-04 00:41:42",
+  "input_sampling_rate": 16000,
+  "workflow_name": "ga20e_speecht5_asr",
+  "sample_index": 124,
+  "decode_policy": "clean",
+  "predicted_text_raw": "why atmospheres is to lavini",
+  "predicted_text_normalized": "why atmospheres is to lavini",
+  "reference_text_raw": "my Atlas is to login",
+  "reference_text_normalized": "my atlas is to login",
+  "inference_time_sec": 0.5716084019995833,
+  "reference_normalized": "my atlas is to login",
+  "hypothesis_normalized": "why atmospheres is to lavini",
+  "wer": 0.6,
+  "cer": 0.65
+}

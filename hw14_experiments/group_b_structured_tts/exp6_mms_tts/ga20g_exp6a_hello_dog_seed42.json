@@ -1,0 +1,20 @@
+{
+  "label": "ga20g_exp6a_hello_dog_seed42",
+  "model_name": "facebook/mms-tts-eng",
+  "timestamp": "2026-04-04 06:55:53",
+  "input_sampling_rate": 16000,
+  "input_text": "Hello, my dog is cute.",
+  "seed": 42,
+  "speaking_rate": 1.0,
+  "baseline_speaking_rate": 1.0,
+  "saved_sampling_rate": 16000,
+  "inference_time_sec": 0.3559313310000789,
+  "output_audio_path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/ga20g_exp6a_hello_dog_seed42.wav",
+  "sample_rate": 16000,
+  "sample_count": 34048,
+  "duration_seconds": 2.128,
+  "rms": 0.10933960974216461,
+  "max_amplitude": 0.8582763671875,
+  "min_amplitude": -0.7686767578125,
+  "path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/ga20g_exp6a_hello_dog_seed42.wav"
+}

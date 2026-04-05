@@ -1,0 +1,18 @@
+{
+  "label": "mms_tts_exp8_llamas_ga20c_whisper_direct_roundtrip",
+  "model_name": "openai/whisper-small",
+  "timestamp": "2026-04-04 05:22:25",
+  "input_sampling_rate": 16000,
+  "workflow_name": "ga20c_whisper_direct",
+  "sample_index": null,
+  "decode_policy": "clean",
+  "predicted_text_raw": " There are little emiss all around.",
+  "predicted_text_normalized": "there are little emiss all around",
+  "reference_text_raw": "There are llamas all around.",
+  "reference_text_normalized": "there are llamas all around",
+  "inference_time_sec": 1.7561209999998937,
+  "reference_normalized": "there are llamas all around",
+  "hypothesis_normalized": "there are little emiss all around",
+  "wer": 0.4,
+  "cer": 0.2962962962962963
+}

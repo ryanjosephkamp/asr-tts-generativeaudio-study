@@ -1,0 +1,18 @@
+{
+  "label": "ga20a_baseline",
+  "model_name": "openai/whisper-small",
+  "timestamp": "2026-04-04 00:19:17",
+  "input_sampling_rate": 16000,
+  "workflow_name": "ga20a_whisper_pipeline",
+  "sample_index": 526,
+  "decode_policy": "clean",
+  "predicted_text_raw": " I'm just wondering if you can tell me about how long it takes for direct debits to show up in my account and where I can find my most recent direct debits that I've made.",
+  "predicted_text_normalized": "i m just wondering if you can tell me about how long it takes for direct debits to show up in my account and where i can find my most recent direct debits that i ve made",
+  "reference_text_raw": "I'm just wondering if you can tell me about how long it takes for direct debits to show up in my account and where I can buy my most recent direct debits that I've made",
+  "reference_text_normalized": "i m just wondering if you can tell me about how long it takes for direct debits to show up in my account and where i can buy my most recent direct debits that i ve made",
+  "inference_time_sec": 0.820796904999952,
+  "reference_normalized": "i m just wondering if you can tell me about how long it takes for direct debits to show up in my account and where i can buy my most recent direct debits that i ve made",
+  "hypothesis_normalized": "i m just wondering if you can tell me about how long it takes for direct debits to show up in my account and where i can find my most recent direct debits that i ve made",
+  "wer": 0.02702702702702703,
+  "cer": 0.023809523809523808
+}

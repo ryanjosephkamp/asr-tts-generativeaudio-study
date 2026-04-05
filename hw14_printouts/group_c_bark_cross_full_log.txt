@@ -1,0 +1,123 @@
+[NOTEBOOK] Starting Group C full run
+/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_auth.py:104: UserWarning: 
+Error while fetching `HF_TOKEN` secret value from your vault: 'Requesting secret HF_TOKEN timed out. Secrets can only be fetched when running from the Colab UI.'.
+You are not authenticated with the Hugging Face Hub in this notebook.
+If the error persists, please let us know by opening an issue on GitHub (https://github.com/huggingface/huggingface_hub/issues/new).
+  warnings.warn(
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:10000 for open-end generation.
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[timer] ga20h_baseline: 70.853s
+[audio] Saved ga20h_baseline -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp1_baselines/ga20h_baseline/ga20h_baseline.wav @ 16000 Hz
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:10000 for open-end generation.
+[timer] ga20k_baseline: 21.389s
+[audio] Saved ga20k_baseline -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp1_baselines/ga20k_baseline/ga20k_baseline.wav @ 16000 Hz
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:10000 for open-end generation.
+[timer] ga20h_exp7a_plain_seed42: 52.996s
+[audio] Saved ga20h_exp7a_plain_seed42 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7a_prompt_styles/ga20h_exp7a_plain_seed42.wav @ 24000 Hz
+Using custom `forced_decoder_ids` from the (generation) config. This is deprecated in favor of the `task` and `language` flags/config options.
+Transcription using a multilingual Whisper will default to language detection followed by transcription instead of translation to English. This might be a breaking change for your use case. If you want to instead always translate your audio to English, make sure to pass `language='en'`. See https://github.com/huggingface/transformers/pull/28687 for more details.
+[timer] ga20h_exp7a_plain_seed42_ga20c_whisper_direct_roundtrip: 2.749s
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:10000 for open-end generation.
+[timer] ga20h_exp7a_plain_seed123: 52.476s
+[audio] Saved ga20h_exp7a_plain_seed123 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7a_prompt_styles/ga20h_exp7a_plain_seed123.wav @ 24000 Hz
+[timer] ga20h_exp7a_plain_seed123_ga20c_whisper_direct_roundtrip: 2.766s
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:10000 for open-end generation.
+[timer] ga20h_exp7a_expr_seed42: 78.923s
+[audio] Saved ga20h_exp7a_expr_seed42 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7a_prompt_styles/ga20h_exp7a_expr_seed42.wav @ 24000 Hz
+[timer] ga20h_exp7a_expr_seed42_ga20c_whisper_direct_roundtrip: 2.403s
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:10000 for open-end generation.
+[timer] ga20h_exp7a_expr_seed123: 62.569s
+[audio] Saved ga20h_exp7a_expr_seed123 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7a_prompt_styles/ga20h_exp7a_expr_seed123.wav @ 24000 Hz
+[timer] ga20h_exp7a_expr_seed123_ga20c_whisper_direct_roundtrip: 2.210s
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:10000 for open-end generation.
+[timer] ga20h_exp7a_strong_expr_seed42: 76.958s
+[audio] Saved ga20h_exp7a_strong_expr_seed42 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7a_prompt_styles/ga20h_exp7a_strong_expr_seed42.wav @ 24000 Hz
+[timer] ga20h_exp7a_strong_expr_seed42_ga20c_whisper_direct_roundtrip: 2.188s
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:10000 for open-end generation.
+[timer] ga20h_exp7a_strong_expr_seed123: 69.398s
+[audio] Saved ga20h_exp7a_strong_expr_seed123 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7a_prompt_styles/ga20h_exp7a_strong_expr_seed123.wav @ 24000 Hz
+[timer] ga20h_exp7a_strong_expr_seed123_ga20c_whisper_direct_roundtrip: 2.352s
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:10000 for open-end generation.
+[timer] ga20k_exp7b_no_preset_seed42: 18.357s
+[audio] Saved ga20k_exp7b_no_preset_seed42 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7b_voice_conditions/ga20k_exp7b_no_preset_seed42.wav @ 24000 Hz
+[timer] ga20k_exp7b_no_preset_seed42_ga20c_whisper_direct_roundtrip: 1.749s
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:10000 for open-end generation.
+[timer] ga20k_exp7b_no_preset_seed123: 16.391s
+[audio] Saved ga20k_exp7b_no_preset_seed123 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7b_voice_conditions/ga20k_exp7b_no_preset_seed123.wav @ 24000 Hz
+[timer] ga20k_exp7b_no_preset_seed123_ga20c_whisper_direct_roundtrip: 2.209s
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:10000 for open-end generation.
+[timer] ga20k_exp7b_preset5_seed42: 35.240s
+[audio] Saved ga20k_exp7b_preset5_seed42 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7b_voice_conditions/ga20k_exp7b_preset5_seed42.wav @ 24000 Hz
+[timer] ga20k_exp7b_preset5_seed42_ga20c_whisper_direct_roundtrip: 2.408s
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:10000 for open-end generation.
+[timer] ga20k_exp7b_preset5_seed123: 27.441s
+[audio] Saved ga20k_exp7b_preset5_seed123 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7b_voice_conditions/ga20k_exp7b_preset5_seed123.wav @ 24000 Hz
+[timer] ga20k_exp7b_preset5_seed123_ga20c_whisper_direct_roundtrip: 1.722s
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:10000 for open-end generation.
+[timer] ga20k_exp7b_preset6_seed42: 27.168s
+[audio] Saved ga20k_exp7b_preset6_seed42 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7b_voice_conditions/ga20k_exp7b_preset6_seed42.wav @ 24000 Hz
+[timer] ga20k_exp7b_preset6_seed42_ga20c_whisper_direct_roundtrip: 1.735s
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:10000 for open-end generation.
+[timer] ga20k_exp7b_preset6_seed123: 33.588s
+[audio] Saved ga20k_exp7b_preset6_seed123 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7b_voice_conditions/ga20k_exp7b_preset6_seed123.wav @ 24000 Hz
+[timer] ga20k_exp7b_preset6_seed123_ga20c_whisper_direct_roundtrip: 1.766s
+[audio] Saved ga20h_exp7c_plain_seed42_16000hz -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7c_export_audit/ga20h_exp7c_plain_seed42_16000hz.wav @ 16000 Hz
+[audio] Saved ga20h_exp7c_plain_seed42_24000hz -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7c_export_audit/ga20h_exp7c_plain_seed42_24000hz.wav @ 24000 Hz
+[timer] ga20h_exp7c_plain_seed42_hardcoded_16k_ga20c_whisper_direct_roundtrip: 2.263s
+[timer] ga20h_exp7c_plain_seed42_model_native_ga20c_whisper_direct_roundtrip: 2.348s
+[audio] Saved ga20h_exp7c_expr_seed42_16000hz -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7c_export_audit/ga20h_exp7c_expr_seed42_16000hz.wav @ 16000 Hz
+[audio] Saved ga20h_exp7c_expr_seed42_24000hz -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7c_export_audit/ga20h_exp7c_expr_seed42_24000hz.wav @ 24000 Hz
+[timer] ga20h_exp7c_expr_seed42_hardcoded_16k_ga20c_whisper_direct_roundtrip: 2.344s
+[timer] ga20h_exp7c_expr_seed42_model_native_ga20c_whisper_direct_roundtrip: 2.557s
+[audio] Saved ga20k_exp7c_nopreset_seed42_16000hz -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7c_export_audit/ga20k_exp7c_nopreset_seed42_16000hz.wav @ 16000 Hz
+[audio] Saved ga20k_exp7c_nopreset_seed42_24000hz -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7c_export_audit/ga20k_exp7c_nopreset_seed42_24000hz.wav @ 24000 Hz
+[timer] ga20k_exp7c_nopreset_seed42_hardcoded_16k_ga20c_whisper_direct_roundtrip: 2.374s
+[timer] ga20k_exp7c_nopreset_seed42_model_native_ga20c_whisper_direct_roundtrip: 1.840s
+[audio] Saved ga20k_exp7c_preset5_seed42_16000hz -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7c_export_audit/ga20k_exp7c_preset5_seed42_16000hz.wav @ 16000 Hz
+[audio] Saved ga20k_exp7c_preset5_seed42_24000hz -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7c_export_audit/ga20k_exp7c_preset5_seed42_24000hz.wav @ 24000 Hz
+[timer] ga20k_exp7c_preset5_seed42_hardcoded_16k_ga20c_whisper_direct_roundtrip: 1.769s
+[timer] ga20k_exp7c_preset5_seed42_model_native_ga20c_whisper_direct_roundtrip: 1.717s
+[timer] ga20f_exp8_hello_dog: 0.706s
+[audio] Saved ga20f_exp8_hello_dog -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/speecht5/hello_dog/ga20f_exp8_hello_dog.wav @ 16000 Hz
+[timer] speecht5_exp8_hello_dog_ga20c_whisper_direct_roundtrip: 2.762s
+[timer] ga20f_exp8_llamas: 0.844s
+[audio] Saved ga20f_exp8_llamas -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/speecht5/llamas/ga20f_exp8_llamas.wav @ 16000 Hz
+[timer] speecht5_exp8_llamas_ga20c_whisper_direct_roundtrip: 1.731s
+[timer] ga20f_exp8_banking_request: 1.468s
+[audio] Saved ga20f_exp8_banking_request -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/speecht5/banking_request/ga20f_exp8_banking_request.wav @ 16000 Hz
+[timer] speecht5_exp8_banking_request_ga20c_whisper_direct_roundtrip: 2.265s
+[timer] ga20g_exp8_hello_dog_seed555: 0.445s
+[audio] Saved ga20g_exp8_hello_dog_seed555 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/mms_tts/hello_dog/ga20g_exp8_hello_dog_seed555.wav @ 16000 Hz
+[timer] mms_tts_exp8_hello_dog_ga20c_whisper_direct_roundtrip: 1.725s
+[timer] ga20g_exp8_llamas_seed555: 0.430s
+[audio] Saved ga20g_exp8_llamas_seed555 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/mms_tts/llamas/ga20g_exp8_llamas_seed555.wav @ 16000 Hz
+[timer] mms_tts_exp8_llamas_ga20c_whisper_direct_roundtrip: 1.756s
+[timer] ga20g_exp8_banking_request_seed555: 0.566s
+[audio] Saved ga20g_exp8_banking_request_seed555 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/mms_tts/banking_request/ga20g_exp8_banking_request_seed555.wav @ 16000 Hz
+[timer] mms_tts_exp8_banking_request_ga20c_whisper_direct_roundtrip: 1.819s
+[timer] bark_preset_exp8_hello_dog_ga20c_whisper_direct_roundtrip: 1.827s
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:10000 for open-end generation.
+[timer] ga20k_exp8_preset5_llamas_seed42: 17.613s
+[audio] Saved ga20k_exp8_preset5_llamas_seed42 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/bark_preset/llamas/ga20k_exp8_preset5_llamas_seed42.wav @ 24000 Hz
+[timer] bark_preset_exp8_llamas_ga20c_whisper_direct_roundtrip: 1.703s
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:10000 for open-end generation.
+[timer] ga20k_exp8_preset5_banking_request_seed42: 35.250s
+[audio] Saved ga20k_exp8_preset5_banking_request_seed42 -> /content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/bark_preset/banking_request/ga20k_exp8_preset5_banking_request_seed42.wav @ 24000 Hz
+[timer] bark_preset_exp8_banking_request_ga20c_whisper_direct_roundtrip: 2.406s
+{'group_name': 'group_c_bark_cross', 'mode': 'full', 'executed_at': '2026-04-04 05:23:28', 'group_root': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross', 'shared_assets': {'fixed_manifest': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/manifests/minds14_fixed_subset.csv', 'resampling_manifest': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/manifests/minds14_resampling_subset.csv', 'text_bank': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/text_bank/text_bank.json', 'long_audio': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/long_audio_cache/long_audio.wav'}, 'counts': {'baseline_rows': 2, 'exp7_rows': 20, 'exp8_rows': 9}, 'paths': {'exp1_csv': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp1_baselines/exp1_baselines.csv', 'exp7_csv': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/exp7_bark.csv', 'exp8_csv': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/exp8_cross_tts.csv', 'best_asr_evaluator_reference': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/best_asr_evaluator_reference.json', 'checkpoint': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/checkpoint.json', 'summary': '/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/group_c_full_summary.json'}, 'best_asr_evaluator': {'workflow_name': 'ga20c_whisper_direct', 'evaluator': 'ga20c_whisper_direct', 'sample_count': 24, 'mean_wer': 0.16891116429797653, 'mean_cer': 0.09075656202107588, 'mean_runtime_seconds': 2.372608658291559, 'selection_rule': 'minimum mean WER, then mean CER, then mean runtime', 'source_experiment': 'exp2_shortform_asr', 'selected_at': '2026-04-04 00:47:50'}}

@@ -1,0 +1,18 @@
+{
+  "label": "speecht5_exp8_llamas_ga20c_whisper_direct_roundtrip",
+  "model_name": "openai/whisper-small",
+  "timestamp": "2026-04-04 05:22:09",
+  "input_sampling_rate": 16000,
+  "workflow_name": "ga20c_whisper_direct",
+  "sample_index": null,
+  "decode_policy": "clean",
+  "predicted_text_raw": " There are Lamas all around.",
+  "predicted_text_normalized": "there are lamas all around",
+  "reference_text_raw": "There are llamas all around.",
+  "reference_text_normalized": "there are llamas all around",
+  "inference_time_sec": 1.7308403749998433,
+  "reference_normalized": "there are llamas all around",
+  "hypothesis_normalized": "there are lamas all around",
+  "wer": 0.2,
+  "cer": 0.037037037037037035
+}

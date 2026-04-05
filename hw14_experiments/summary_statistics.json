@@ -1,0 +1,65 @@
+{
+  "project": "HW14 Speech AI",
+  "total_primary_csvs": 10,
+  "consolidated_rows": 272,
+  "figure_count": 22,
+  "experiment_row_counts": {
+    "exp1_baselines": 2,
+    "exp2_shortform_asr": 96,
+    "exp3_asr_sensitivity": 114,
+    "exp4_longform_whisper": 6,
+    "exp5_speecht5_tts": 6,
+    "exp6_mms_tts": 12,
+    "exp7_bark": 20,
+    "exp8_cross_tts": 9
+  },
+  "group_summaries": {
+    "group_a_asr": {
+      "baseline_rows": 5,
+      "exp2_rows": 96,
+      "exp3_rows": 114,
+      "exp4_rows": 6
+    },
+    "group_b_structured_tts": {
+      "baseline_rows": 2,
+      "exp5_rows": 6,
+      "exp6_rows": 12
+    },
+    "group_c_bark_cross": {
+      "baseline_rows": 2,
+      "exp7_rows": 20,
+      "exp8_rows": 9
+    }
+  },
+  "best_asr_evaluator": {
+    "workflow_name": "ga20c_whisper_direct",
+    "evaluator": "ga20c_whisper_direct",
+    "sample_count": 24,
+    "mean_wer": 0.16891116429797653,
+    "mean_cer": 0.09075656202107588,
+    "mean_runtime_seconds": 2.372608658291559,
+    "selection_rule": "minimum mean WER, then mean CER, then mean runtime",
+    "source_experiment": "exp2_shortform_asr",
+    "selected_at": "2026-04-04 00:47:50"
+  },
+  "exp2_asr_winner": {
+    "workflow": "ga20c_whisper_direct",
+    "mean_wer": 0.16891116429797653,
+    "mean_cer": 0.09075656202107588
+  },
+  "exp8_tts_winner": {
+    "system_id": "speecht5",
+    "mean_wer": 0.06666666666666667,
+    "mean_cer": 0.012345679012345666,
+    "mean_runtime_sec": 1.0063584766666434
+  },
+  "research_questions_addressable": [
+    "RQ1: Exp2 CSV (96 rows across 4 ASR workflows on 24 fixed MINDS-14 utterances)",
+    "RQ2: Exp3 CSV (114 rows covering resampling-rate sensitivity and GA20C cleanup delta)",
+    "RQ3: Exp4 CSV (6 long-form conditions with segment counts and similarity scores)",
+    "RQ4: Exp5 CSV (6 SpeechT5 conditions with spectrogram and duration data)",
+    "RQ5: Exp6 CSV (12 MMS-TTS conditions with seed and speaking-rate variation)",
+    "RQ6: Exp7 CSV (20 Bark rows across prompt styles, voice presets, and export audit)",
+    "RQ7: Exp8 CSV (9 cross-model rows) plus consolidated cross-analysis"
+  ]
+}

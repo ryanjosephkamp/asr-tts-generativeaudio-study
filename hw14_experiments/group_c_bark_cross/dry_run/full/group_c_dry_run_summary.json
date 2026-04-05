@@ -1,0 +1,35 @@
+{
+  "group_name": "group_c_bark_cross",
+  "mode": "dry_run",
+  "executed_at": "2026-04-04 04:34:03",
+  "group_root": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/dry_run",
+  "shared_assets": {
+    "fixed_manifest": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/manifests/minds14_fixed_subset.csv",
+    "resampling_manifest": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/manifests/minds14_resampling_subset.csv",
+    "text_bank": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/text_bank/text_bank.json",
+    "long_audio": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/long_audio_cache/long_audio.wav"
+  },
+  "counts": {
+    "baseline_rows": 2,
+    "exp7_rows": 4,
+    "exp8_rows": 1
+  },
+  "paths": {
+    "exp1_csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/dry_run/exp1_baselines/exp1_baselines.csv",
+    "exp7_csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/dry_run/exp7_bark/exp7_bark.csv",
+    "exp8_csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/dry_run/exp8_cross_tts/exp8_cross_tts.csv",
+    "best_asr_evaluator_reference": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/dry_run/full/best_asr_evaluator_reference.json",
+    "checkpoint": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/checkpoint.json"
+  },
+  "best_asr_evaluator": {
+    "workflow_name": "ga20c_whisper_direct",
+    "evaluator": "ga20c_whisper_direct",
+    "sample_count": 24,
+    "mean_wer": 0.16891116429797653,
+    "mean_cer": 0.09075656202107588,
+    "mean_runtime_seconds": 2.372608658291559,
+    "selection_rule": "minimum mean WER, then mean CER, then mean runtime",
+    "source_experiment": "exp2_shortform_asr",
+    "selected_at": "2026-04-04 00:47:50"
+  }
+}

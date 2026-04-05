@@ -1,0 +1,18 @@
+{
+  "label": "ga20c_baseline",
+  "model_name": "openai/whisper-small",
+  "timestamp": "2026-04-04 00:41:23",
+  "input_sampling_rate": 16000,
+  "workflow_name": "ga20c_whisper_direct",
+  "sample_index": 210,
+  "decode_policy": "raw",
+  "predicted_text_raw": " Oh I'd like to change my address please. Yes my new address is 35 Frederick Street. Thank you.",
+  "predicted_text_normalized": "oh i d like to change my address please yes my new address is 35 frederick street thank you",
+  "reference_text_raw": "I like to change my address please",
+  "reference_text_normalized": "i like to change my address please",
+  "inference_time_sec": 2.257994870999937,
+  "reference_normalized": "i like to change my address please",
+  "hypothesis_normalized": "oh i d like to change my address please yes my new address is 35 frederick street thank you",
+  "wer": 1.7142857142857142,
+  "cer": 1.6764705882352942
+}

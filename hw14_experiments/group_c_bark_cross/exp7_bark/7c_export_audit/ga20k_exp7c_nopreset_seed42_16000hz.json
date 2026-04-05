@@ -1,0 +1,23 @@
+{
+  "label": "ga20k_exp7c_nopreset_seed42_16000hz",
+  "model_name": "suno/bark-small",
+  "timestamp": "2026-04-04 05:21:38",
+  "input_sampling_rate": 16000,
+  "input_text": "Hello, my dog is cute.",
+  "voice_preset": null,
+  "seed": 42,
+  "do_sample": true,
+  "native_sampling_rate": 24000,
+  "saved_sampling_rate": 16000,
+  "save_rate_mode": "hardcoded_16k",
+  "inference_time_sec": 18.356803092000064,
+  "audio_source_path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7b_voice_conditions/ga20k_exp7b_no_preset_seed42.wav",
+  "output_audio_path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7c_export_audit/ga20k_exp7c_nopreset_seed42_16000hz.wav",
+  "sample_rate": 16000,
+  "sample_count": 73280,
+  "duration_seconds": 4.58,
+  "rms": 0.05657077208161354,
+  "max_amplitude": 0.39007568359375,
+  "min_amplitude": -0.246795654296875,
+  "path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp7_bark/7c_export_audit/ga20k_exp7c_nopreset_seed42_16000hz.wav"
+}

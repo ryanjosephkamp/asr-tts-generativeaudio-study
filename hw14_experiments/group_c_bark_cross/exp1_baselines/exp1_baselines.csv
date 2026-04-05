@@ -1,0 +1,4 @@
+experiment,script,task_type,baseline_mode,dataset_sample_index,reference_text,predicted_text,model_name,input_text,voice_condition,input_sampling_rate,saved_sampling_rate,output_audio_path,output_text_path,output_figure_path,runtime_sec,timestamp,notes
+exp1_baselines,GA20H,tts,True,,,,suno/bark-small,"Hello, my name is Suno. And, uh — and I like pizza. [laughs]
+But I also have other interests such as playing tic tac toe.",expressive_prompt,,16000,hw14_experiments/group_c_bark_cross/exp1_baselines/ga20h_baseline/ga20h_baseline.wav,,,70.85289929600015,2026-04-04 05:11:08,Baseline-equivalent expressive Bark export preserved at hard-coded 16 kHz.
+exp1_baselines,GA20K,tts,True,,,,suno/bark-small,"Hello, my dog is cute",v2/en_speaker_5,,16000,hw14_experiments/group_c_bark_cross/exp1_baselines/ga20k_baseline/ga20k_baseline.wav,,,21.3892165069999,2026-04-04 05:11:33,Baseline-equivalent Bark preset export preserved at hard-coded 16 kHz.

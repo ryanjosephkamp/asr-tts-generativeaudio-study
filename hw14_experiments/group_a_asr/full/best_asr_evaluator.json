@@ -1,0 +1,11 @@
+{
+  "workflow_name": "ga20c_whisper_direct",
+  "evaluator": "ga20c_whisper_direct",
+  "sample_count": 24,
+  "mean_wer": 0.16891116429797653,
+  "mean_cer": 0.09075656202107588,
+  "mean_runtime_seconds": 2.372608658291559,
+  "selection_rule": "minimum mean WER, then mean CER, then mean runtime",
+  "source_experiment": "exp2_shortform_asr",
+  "selected_at": "2026-04-04 00:47:50"
+}

@@ -1,0 +1,18 @@
+{
+  "label": "ga20e_baseline",
+  "model_name": "microsoft/speecht5_asr",
+  "timestamp": "2026-04-04 00:19:43",
+  "input_sampling_rate": 16000,
+  "workflow_name": "ga20e_speecht5_asr",
+  "sample_index": 525,
+  "decode_policy": "clean",
+  "predicted_text_raw": "thank you very much good evening i am wishing to ask a question about",
+  "predicted_text_normalized": "thank you very much good evening i am wishing to ask a question about",
+  "reference_text_raw": "good evening I am wishing to ask a question about direct debits can you please inform me how about doing it what are the rules and what needs to be done to proceed with this request thank you very much",
+  "reference_text_normalized": "good evening i am wishing to ask a question about direct debits can you please inform me how about doing it what are the rules and what needs to be done to proceed with this request thank you very much",
+  "inference_time_sec": 2.309762516999399,
+  "reference_normalized": "good evening i am wishing to ask a question about direct debits can you please inform me how about doing it what are the rules and what needs to be done to proceed with this request thank you very much",
+  "hypothesis_normalized": "thank you very much good evening i am wishing to ask a question about",
+  "wer": 0.85,
+  "cer": 0.8009950248756219
+}

@@ -1,0 +1,18 @@
+{
+  "label": "ga20b_baseline",
+  "model_name": "facebook/wav2vec2-base-960h",
+  "timestamp": "2026-04-04 00:41:19",
+  "input_sampling_rate": 16000,
+  "workflow_name": "ga20b_wav2vec2_ctc",
+  "sample_index": 271,
+  "decode_policy": "clean",
+  "predicted_text_raw": "ON ETIN A WAT A LIKE COT MU AND COM CANWARD CRGRVITE",
+  "predicted_text_normalized": "on etin a wat a like cot mu and com canward crgrvite",
+  "reference_text_raw": "I need to know what's like my bank I can work overseas",
+  "reference_text_normalized": "i need to know what s like my bank i can work overseas",
+  "inference_time_sec": 0.6623827729999903,
+  "reference_normalized": "i need to know what s like my bank i can work overseas",
+  "hypothesis_normalized": "on etin a wat a like cot mu and com canward crgrvite",
+  "wer": 0.9230769230769231,
+  "cer": 0.5925925925925926
+}

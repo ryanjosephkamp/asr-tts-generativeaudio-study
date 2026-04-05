@@ -1,0 +1,26 @@
+# HW14: Speech AI with Transformers
+# CS6078 Generative AI - University of Cincinnati - Spring 2026
+#
+# Install with: pip install -r requirements.txt
+# Note: Install PyTorch separately if a specific CUDA version is needed.
+#       See https://pytorch.org/get-started/locally/
+
+# Deep learning framework
+torch
+
+# Hugging Face ecosystem
+transformers
+datasets
+huggingface_hub
+
+# ASR and TTS evaluation
+jiwer
+
+# Scientific Python
+numpy
+scipy
+pandas
+matplotlib
+
+# Course-specific utilities (provides generate_long_audio, get_speaker_embeddings)
+genaibook

@@ -1,0 +1,18 @@
+{
+  "label": "ga20b_baseline",
+  "model_name": "facebook/wav2vec2-base-960h",
+  "timestamp": "2026-04-04 00:19:18",
+  "input_sampling_rate": 16000,
+  "workflow_name": "ga20b_wav2vec2_ctc",
+  "sample_index": 528,
+  "decode_policy": "clean",
+  "predicted_text_raw": "HE TELL ME ABOUT DIRECT DEDIT",
+  "predicted_text_normalized": "he tell me about direct dedit",
+  "reference_text_raw": "can you tell me about direct debit",
+  "reference_text_normalized": "can you tell me about direct debit",
+  "inference_time_sec": 0.1529267220003021,
+  "reference_normalized": "can you tell me about direct debit",
+  "hypothesis_normalized": "he tell me about direct dedit",
+  "wer": 0.42857142857142855,
+  "cer": 0.23529411764705882
+}

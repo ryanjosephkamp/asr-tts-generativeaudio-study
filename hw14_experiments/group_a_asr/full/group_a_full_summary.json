@@ -1,0 +1,37 @@
+{
+  "group_name": "group_a_asr",
+  "mode": "full",
+  "executed_at": "2026-04-04 00:47:50",
+  "group_root": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr",
+  "shared_assets": {
+    "fixed_manifest": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/manifests/minds14_fixed_subset.csv",
+    "resampling_manifest": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/manifests/minds14_resampling_subset.csv",
+    "text_bank": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/text_bank/text_bank.json",
+    "long_audio": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/long_audio_cache/long_audio.wav"
+  },
+  "counts": {
+    "baseline_rows": 5,
+    "exp2_rows": 96,
+    "exp3_rows": 114,
+    "exp4_rows": 6
+  },
+  "paths": {
+    "exp1_csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/exp1_baselines/exp1_baselines.csv",
+    "exp2_csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/exp2_shortform_asr/exp2_shortform_asr.csv",
+    "exp3_csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/exp3_asr_sensitivity/exp3_asr_sensitivity.csv",
+    "exp4_csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/exp4_longform_whisper/exp4_longform_whisper.csv",
+    "best_asr_evaluator": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_a_asr/full/best_asr_evaluator.json",
+    "checkpoint": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/checkpoint.json"
+  },
+  "best_asr_evaluator": {
+    "workflow_name": "ga20c_whisper_direct",
+    "evaluator": "ga20c_whisper_direct",
+    "sample_count": 24,
+    "mean_wer": 0.16891116429797653,
+    "mean_cer": 0.09075656202107588,
+    "mean_runtime_seconds": 2.372608658291559,
+    "selection_rule": "minimum mean WER, then mean CER, then mean runtime",
+    "source_experiment": "exp2_shortform_asr",
+    "selected_at": "2026-04-04 00:47:50"
+  }
+}

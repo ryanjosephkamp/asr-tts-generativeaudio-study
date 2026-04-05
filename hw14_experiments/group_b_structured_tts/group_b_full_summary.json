@@ -1,0 +1,24 @@
+{
+  "group_name": "group_b_structured_tts",
+  "mode": "full",
+  "executed_at": "2026-04-04 06:56:00",
+  "group_root": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts",
+  "shared_assets": {
+    "fixed_manifest": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/manifests/minds14_fixed_subset.csv",
+    "resampling_manifest": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/manifests/minds14_resampling_subset.csv",
+    "text_bank": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/text_bank/text_bank.json",
+    "long_audio": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/shared_assets/long_audio_cache/long_audio.wav"
+  },
+  "counts": {
+    "baseline_rows": 2,
+    "exp5_rows": 6,
+    "exp6_rows": 12
+  },
+  "paths": {
+    "exp1_csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp1_baselines/exp1_baselines.csv",
+    "exp5_csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp5_speecht5_tts/exp5_speecht5_tts.csv",
+    "exp6_csv": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/exp6_mms_tts.csv",
+    "checkpoint": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/checkpoint.json",
+    "summary": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/group_b_full_summary.json"
+  }
+}

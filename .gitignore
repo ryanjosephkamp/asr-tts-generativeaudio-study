@@ -1,0 +1,135 @@
+# =============================================================================
+# HW14 - Speech AI with Transformers: ASR, TTS, and Generative Audio
+# Comprehensive .gitignore for GitHub repository publication
+# =============================================================================
+
+# ---------------------
+# Python build artifacts
+# ---------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+
+# ---------------------
+# Virtual environments
+# ---------------------
+.venv/
+venv/
+env/
+ENV/
+
+# ---------------------
+# macOS system files
+# ---------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ---------------------
+# Windows system files
+# ---------------------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ---------------------
+# Linux system files
+# ---------------------
+*~
+
+# ---------------------
+# IDE and editor files
+# ---------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# ---------------------
+# Jupyter / notebook
+# ---------------------
+.ipynb_checkpoints/
+
+# ---------------------
+# LaTeX build artifacts
+# ---------------------
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.out
+*.toc
+*.bbl
+*.blg
+*.nav
+*.snm
+*.vrb
+
+# ---------------------
+# Image files
+# ---------------------
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.svg
+*.ico
+*.webp
+
+# ---------------------
+# Generated audio files
+# ---------------------
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.m4a
+
+# ---------------------
+# ZIP result bundles
+# ---------------------
+*.zip
+
+# ---------------------
+# Model caches and large binary artifacts
+# ---------------------
+*.pt
+*.pth
+*.bin
+*.onnx
+*.safetensors
+.cache/
+huggingface/
+
+# ---------------------
+# Project planning and AI workspace (not part of deliverables)
+# ---------------------
+.ai/
+
+# ---------------------
+# Assignment background materials
+# ---------------------
+.hw14_background/
+
+# ---------------------
+# Colab result packages (raw downloads; organized data is in group dirs)
+# ---------------------
+hw14_experiments/group_a_results_*/
+hw14_experiments/group_b_results_*/
+hw14_experiments/group_c_results_*/
+
+# ---------------------
+# PDF files in reports (large binary; keep LaTeX source and markdown)
+# ---------------------
+hw14_reports/pdfs/
+hw14_reports/latex/final_report.pdf

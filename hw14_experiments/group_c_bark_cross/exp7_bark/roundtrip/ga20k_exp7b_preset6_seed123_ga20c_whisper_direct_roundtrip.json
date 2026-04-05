@@ -1,0 +1,18 @@
+{
+  "label": "ga20k_exp7b_preset6_seed123_ga20c_whisper_direct_roundtrip",
+  "model_name": "openai/whisper-small",
+  "timestamp": "2026-04-04 05:21:28",
+  "input_sampling_rate": 16000,
+  "workflow_name": "ga20c_whisper_direct",
+  "sample_index": null,
+  "decode_policy": "clean",
+  "predicted_text_raw": " Hello, my God, this queue.",
+  "predicted_text_normalized": "hello my god this queue",
+  "reference_text_raw": "Hello, my dog is cute.",
+  "reference_text_normalized": "hello my dog is cute",
+  "inference_time_sec": 1.765909069999907,
+  "reference_normalized": "hello my dog is cute",
+  "hypothesis_normalized": "hello my god this queue",
+  "wer": 0.6,
+  "cer": 0.35
+}

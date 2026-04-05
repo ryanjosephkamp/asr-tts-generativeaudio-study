@@ -1,0 +1,19 @@
+{
+  "label": "ga20f_exp8_llamas",
+  "model_name": "microsoft/speecht5_tts",
+  "timestamp": "2026-04-04 05:22:07",
+  "input_sampling_rate": 16000,
+  "input_text": "There are llamas all around.",
+  "speaker_condition": "helper_embedding",
+  "inference_time_sec": 0.8444231620001119,
+  "saved_sampling_rate": 16000,
+  "output_figure_path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/speecht5/llamas/ga20f_exp8_llamas_spectrogram.png",
+  "output_audio_path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/speecht5/llamas/ga20f_exp8_llamas.wav",
+  "sample_rate": 16000,
+  "sample_count": 24576,
+  "duration_seconds": 1.536,
+  "rms": 0.0618789866566658,
+  "max_amplitude": 0.214599609375,
+  "min_amplitude": -0.299652099609375,
+  "path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_c_bark_cross/exp8_cross_tts/speecht5/llamas/ga20f_exp8_llamas.wav"
+}

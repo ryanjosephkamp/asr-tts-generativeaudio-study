@@ -1,0 +1,20 @@
+{
+  "label": "ga20g_exp6a_banking_request_seed123",
+  "model_name": "facebook/mms-tts-eng",
+  "timestamp": "2026-04-04 06:55:55",
+  "input_sampling_rate": 16000,
+  "input_text": "I need to transfer money from savings to checking today.",
+  "seed": 123,
+  "speaking_rate": 1.0,
+  "baseline_speaking_rate": 1.0,
+  "saved_sampling_rate": 16000,
+  "inference_time_sec": 0.5206813980000788,
+  "output_audio_path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/ga20g_exp6a_banking_request_seed123.wav",
+  "sample_rate": 16000,
+  "sample_count": 60672,
+  "duration_seconds": 3.792,
+  "rms": 0.11583128571510315,
+  "max_amplitude": 0.871063232421875,
+  "min_amplitude": -0.768707275390625,
+  "path": "/content/drive/MyDrive/kamp_hw14/hw14_experiments/group_b_structured_tts/exp6_mms_tts/ga20g_exp6a_banking_request_seed123.wav"
+}

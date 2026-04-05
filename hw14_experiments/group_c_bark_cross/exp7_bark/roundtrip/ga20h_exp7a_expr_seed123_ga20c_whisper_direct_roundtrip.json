@@ -1,0 +1,18 @@
+{
+  "label": "ga20h_exp7a_expr_seed123_ga20c_whisper_direct_roundtrip",
+  "model_name": "openai/whisper-small",
+  "timestamp": "2026-04-04 05:16:01",
+  "input_sampling_rate": 16000,
+  "workflow_name": "ga20c_whisper_direct",
+  "sample_index": null,
+  "decode_policy": "clean",
+  "predicted_text_raw": " Oh, my name is Suno and I like gates. But I also have other interests such as playing to Tecto.",
+  "predicted_text_normalized": "oh my name is suno and i like gates but i also have other interests such as playing to tecto",
+  "reference_text_raw": "Hello, my name is Suno. And, uh \u2014 and I like pizza. [laughs]\nBut I also have other interests such as playing tic tac toe.",
+  "reference_text_normalized": "hello my name is suno and uh and i like pizza laughs but i also have other interests such as playing tic tac toe",
+  "inference_time_sec": 2.210008732999995,
+  "reference_normalized": "hello my name is suno and uh and i like pizza laughs but i also have other interests such as playing tic tac toe",
+  "hypothesis_normalized": "oh my name is suno and i like gates but i also have other interests such as playing to tecto",
+  "wer": 0.3333333333333333,
+  "cer": 0.24107142857142858
+}

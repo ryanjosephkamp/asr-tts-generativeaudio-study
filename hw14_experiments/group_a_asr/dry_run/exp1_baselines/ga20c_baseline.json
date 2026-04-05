@@ -1,0 +1,18 @@
+{
+  "label": "ga20c_baseline",
+  "model_name": "openai/whisper-small",
+  "timestamp": "2026-04-04 00:19:23",
+  "input_sampling_rate": 16000,
+  "workflow_name": "ga20c_whisper_direct",
+  "sample_index": 61,
+  "decode_policy": "raw",
+  "predicted_text_raw": " Hi, I'm just calling because I'd like to freeze all transactions on my card",
+  "predicted_text_normalized": "hi i m just calling because i d like to freeze all transactions on my card",
+  "reference_text_raw": "hi I'm just calling because ID like to freeze all transactions on my",
+  "reference_text_normalized": "hi i m just calling because id like to freeze all transactions on my",
+  "inference_time_sec": 2.0657225879995167,
+  "reference_normalized": "hi i m just calling because id like to freeze all transactions on my",
+  "hypothesis_normalized": "hi i m just calling because i d like to freeze all transactions on my card",
+  "wer": 0.21428571428571427,
+  "cer": 0.08823529411764706
+}
